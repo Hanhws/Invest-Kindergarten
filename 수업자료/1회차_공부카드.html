@@ -1,0 +1,298 @@
+<title>주식 유치원 · 1회차 공부카드</title>
+<style>
+  :root {
+    --paper: #f7f4ec;
+    --card: #ffffff;
+    --ink: #232019;
+    --ink-soft: #6b6459;
+    --line: #e7e0d3;
+    --grow: #1f8a5b;
+    --grow-soft: #e6f2ea;
+    --gold: #c98a2b;
+    --shadow: 24px 32px 60px -32px rgba(40, 34, 22, .35);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #16140f;
+      --card: #201d17;
+      --ink: #f2ece0;
+      --ink-soft: #a89f8f;
+      --line: #322d24;
+      --grow: #47c98a;
+      --grow-soft: #16281f;
+      --gold: #e0a94a;
+      --shadow: 24px 32px 60px -30px rgba(0, 0, 0, .6);
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #f7f4ec; --card: #ffffff; --ink: #232019; --ink-soft: #6b6459;
+    --line: #e7e0d3; --grow: #1f8a5b; --grow-soft: #e6f2ea; --gold: #c98a2b;
+    --shadow: 24px 32px 60px -32px rgba(40, 34, 22, .35);
+  }
+  :root[data-theme="dark"] {
+    --paper: #16140f; --card: #201d17; --ink: #f2ece0; --ink-soft: #a89f8f;
+    --line: #322d24; --grow: #47c98a; --grow-soft: #16281f; --gold: #e0a94a;
+    --shadow: 24px 32px 60px -30px rgba(0, 0, 0, .6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: clamp(16px, 4vw, 56px);
+  }
+
+  .card {
+    width: 100%;
+    max-width: 620px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .head {
+    padding: clamp(28px, 5vw, 40px) clamp(24px, 5vw, 44px) clamp(24px, 4vw, 32px);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--grow);
+    text-transform: uppercase;
+    margin: 0 0 14px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px; height: 2px;
+    background: var(--grow);
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    text-wrap: balance;
+  }
+  .goal {
+    margin: 16px 0 0;
+    padding: 14px 18px;
+    background: var(--grow-soft);
+    border-radius: 12px;
+    font-size: clamp(15px, 3.4vw, 17px);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .goal b { color: var(--grow); }
+
+  /* ── Body ── */
+  .body {
+    padding: clamp(22px, 4vw, 36px) clamp(24px, 5vw, 44px) clamp(28px, 5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+
+  /* Steps */
+  .steps {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .step {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .step:last-child { border-bottom: none; }
+  .num {
+    flex: none;
+    width: 30px;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--grow);
+    font-variant-numeric: tabular-nums;
+  }
+  .step-body h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .step-body p {
+    margin: 3px 0 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  /* Compare */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .vs {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .vs h4 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    font-weight: 800;
+  }
+  .vs.value h4 { color: var(--grow); }
+  .vs.trade h4 { color: var(--gold); }
+  .vs p { margin: 0; font-size: 13.5px; color: var(--ink-soft); }
+
+  /* Terms table */
+  .terms {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .term {
+    display: grid;
+    grid-template-columns: 82px 1fr;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .term:last-child { border-bottom: none; }
+  .term dt {
+    padding: 12px 16px;
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--grow);
+    background: var(--grow-soft);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    letter-spacing: .02em;
+  }
+  .term dd {
+    margin: 0;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  /* Takeaway */
+  .takeaway {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 14px;
+    padding: 22px 24px;
+    text-align: center;
+  }
+  .takeaway .section-label { color: rgba(255,255,255,.55); margin-bottom: 8px; }
+  .takeaway p {
+    margin: 0;
+    font-size: clamp(16px, 3.8vw, 19px);
+    font-weight: 700;
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+  .takeaway .hl { color: var(--grow); }
+
+  @media (max-width: 460px) {
+    .compare { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="card">
+  <header class="head">
+    <p class="eyebrow">주식 유치원 · 1회차</p>
+    <h1>투자의 첫걸음, <br>가치투자 기초</h1>
+    <p class="goal">🎯 <b>수업 목표</b> — 투자가 무엇인지 이해하고, 가치투자를 하는 두 가지 기본 방법(재무제표·경영진)을 안다.</p>
+  </header>
+
+  <div class="body">
+    <section>
+      <p class="section-label">오늘 배운 흐름</p>
+      <ol class="steps">
+        <li class="step">
+          <span class="num">01</span>
+          <div class="step-body">
+            <h3>투자란 무엇인가</h3>
+            <p>돈이 스스로 일하게 만들어 자산을 키우는 것</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="num">02</span>
+          <div class="step-body">
+            <h3>주식투자란</h3>
+            <p>기업의 지분을 사서 그 성장에 함께 올라타는 것</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="num">03</span>
+          <div class="step-body">
+            <h3>투자의 종류</h3>
+            <p>크게 <b>가치투자</b>와 <b>트레이딩</b>으로 나뉜다</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="num">04</span>
+          <div class="step-body">
+            <h3>가치투자를 하는 법</h3>
+            <p>① 재무제표 보기 &nbsp;·&nbsp; ② 경영진 보기</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <p class="section-label">가치투자 vs 트레이딩</p>
+      <div class="compare">
+        <div class="vs value">
+          <h4>가치투자</h4>
+          <p>기업의 '진짜 가치'를 보고 길게 투자</p>
+        </div>
+        <div class="vs trade">
+          <h4>트레이딩</h4>
+          <p>가격 변동을 노려 짧게 사고팔기</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="section-label">꼭 외울 지표 &amp; 포인트</p>
+      <dl class="terms">
+        <div class="term"><dt>PER</dt><dd>주가가 이익에 비해 비싼가, 싼가</dd></div>
+        <div class="term"><dt>PBR</dt><dd>주가가 순자산에 비해 비싼가, 싼가</dd></div>
+        <div class="term"><dt>ROE</dt><dd>기업이 돈을 얼마나 잘 버는가</dd></div>
+        <div class="term"><dt>경영진</dt><dd>같은 기업도 이끄는 사람에 따라 달라진다</dd></div>
+      </dl>
+    </section>
+
+    <section class="takeaway">
+      <p class="section-label">한 문장 정리</p>
+      <p>좋은 기업을 <span class="hl">재무제표</span>로 확인하고,<br>그 기업을 <span class="hl">좋은 경영진</span>이 이끄는지 보고 산다.</p>
+    </section>
+  </div>
+</div>
