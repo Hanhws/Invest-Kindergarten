@@ -1,0 +1,387 @@
+<title>주식 유치원 · 2회차 공부카드</title>
+<style>
+  :root {
+    --paper: #f7f4ec;
+    --card: #ffffff;
+    --ink: #232019;
+    --ink-soft: #6b6459;
+    --line: #e7e0d3;
+    --grow: #1f8a5b;
+    --grow-soft: #e6f2ea;
+    --gold: #c98a2b;
+    --gold-soft: #f6ecda;
+    --up: #d43b34;
+    --up-soft: #f8e4e2;
+    --down: #2f6fd0;
+    --down-soft: #e2ebf8;
+    --shadow: 24px 32px 60px -32px rgba(40, 34, 22, .35);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #16140f; --card: #201d17; --ink: #f2ece0; --ink-soft: #a89f8f;
+      --line: #322d24; --grow: #47c98a; --grow-soft: #16281f; --gold: #e0a94a;
+      --gold-soft: #2a2114;
+      --up: #f0665f; --up-soft: #2e1917; --down: #6ba0ea; --down-soft: #161f2e;
+      --shadow: 24px 32px 60px -30px rgba(0, 0, 0, .6);
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #f7f4ec; --card: #ffffff; --ink: #232019; --ink-soft: #6b6459;
+    --line: #e7e0d3; --grow: #1f8a5b; --grow-soft: #e6f2ea; --gold: #c98a2b;
+    --gold-soft: #f6ecda;
+    --up: #d43b34; --up-soft: #f8e4e2; --down: #2f6fd0; --down-soft: #e2ebf8;
+    --shadow: 24px 32px 60px -32px rgba(40, 34, 22, .35);
+  }
+  :root[data-theme="dark"] {
+    --paper: #16140f; --card: #201d17; --ink: #f2ece0; --ink-soft: #a89f8f;
+    --line: #322d24; --grow: #47c98a; --grow-soft: #16281f; --gold: #e0a94a;
+    --gold-soft: #2a2114;
+    --up: #f0665f; --up-soft: #2e1917; --down: #6ba0ea; --down-soft: #161f2e;
+    --shadow: 24px 32px 60px -30px rgba(0, 0, 0, .6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: clamp(16px, 4vw, 56px);
+  }
+
+  .card {
+    width: 100%;
+    max-width: 620px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .head {
+    padding: clamp(28px, 5vw, 40px) clamp(24px, 5vw, 44px) clamp(24px, 4vw, 32px);
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--grow);
+    text-transform: uppercase;
+    margin: 0 0 14px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px; height: 2px;
+    background: var(--grow);
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    text-wrap: balance;
+  }
+  .goal {
+    margin: 16px 0 0;
+    padding: 14px 18px;
+    background: var(--grow-soft);
+    border-radius: 12px;
+    font-size: clamp(15px, 3.4vw, 17px);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .goal b { color: var(--grow); }
+
+  /* ── Body ── */
+  .body {
+    padding: clamp(22px, 4vw, 36px) clamp(24px, 5vw, 44px) clamp(28px, 5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+
+  /* ESG */
+  .esg {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .esg-item {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+  }
+  .esg-item .letter {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--grow);
+    line-height: 1;
+  }
+  .esg-item h4 { margin: 8px 0 3px; font-size: 14px; font-weight: 800; }
+  .esg-item p { margin: 0; font-size: 12px; color: var(--ink-soft); }
+
+  /* Compare 국장/미장 */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .vs {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .vs h4 {
+    margin: 0 0 10px;
+    font-size: 15px;
+    font-weight: 800;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .vs.kr h4 { color: var(--down); }
+  .vs.us h4 { color: var(--grow); }
+  .vs ul { margin: 0; padding-left: 0; list-style: none; }
+  .vs li {
+    font-size: 13.5px; color: var(--ink);
+    padding: 5px 0; border-top: 1px dashed var(--line);
+  }
+  .vs li:first-child { border-top: none; }
+  .vs li span { color: var(--ink-soft); font-size: 12px; }
+  .tag {
+    font-size: 10.5px; font-weight: 800; letter-spacing: .04em;
+    padding: 2px 8px; border-radius: 999px;
+  }
+  .vs.kr .tag { background: var(--down-soft); color: var(--down); }
+  .vs.us .tag { background: var(--grow-soft); color: var(--grow); }
+
+  /* Long / Short */
+  .ls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .ls-box {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .ls-box.long { background: var(--up-soft); border-color: var(--up); }
+  .ls-box.short { background: var(--down-soft); border-color: var(--down); }
+  .ls-box h4 { margin: 0 0 4px; font-size: 16px; font-weight: 800; }
+  .ls-box.long h4 { color: var(--up); }
+  .ls-box.short h4 { color: var(--down); }
+  .ls-box p { margin: 0 0 10px; font-size: 13px; color: var(--ink); }
+  .ls-box .market {
+    display: inline-block;
+    font-size: 12px; font-weight: 800;
+    padding: 4px 12px; border-radius: 999px;
+    background: var(--card);
+  }
+  .ls-box.long .market { color: var(--up); }
+  .ls-box.short .market { color: var(--down); }
+
+  /* Candle */
+  .candle-wrap { display: flex; flex-direction: column; gap: 18px; }
+  .candle-legend {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  .cl {
+    border: 1px solid var(--line); border-radius: 10px;
+    padding: 10px 14px; font-size: 13px;
+  }
+  .cl b { font-weight: 800; }
+  .cl.up { background: var(--up-soft); border-color: var(--up); }
+  .cl.up b { color: var(--up); }
+  .cl.down { background: var(--down-soft); border-color: var(--down); }
+  .cl.down b { color: var(--down); }
+  .candle-note {
+    font-size: 13px; color: var(--ink-soft);
+    text-align: center; padding-top: 4px;
+    border-top: 1px dashed var(--line); margin-top: 2px;
+  }
+  .candle-note b { color: var(--ink); }
+
+  .cd .wick { stroke: var(--ink-soft); stroke-width: 3; }
+  .cd .up-body { fill: var(--up-soft); stroke: var(--up); stroke-width: 2.5; }
+  .cd .up-wick { stroke: var(--up); }
+  .cd .down-body { fill: var(--down); stroke: var(--down); stroke-width: 2.5; }
+  .cd .down-wick { stroke: var(--down); }
+  .cd .lbl { font: 700 12px "Apple SD Gothic Neo", system-ui, sans-serif; fill: var(--ink); }
+  .cd .lbl-s { font: 600 11px "Apple SD Gothic Neo", system-ui, sans-serif; fill: var(--ink-soft); }
+  .cd .lead { stroke: var(--line); stroke-width: 1.2; stroke-dasharray: 3 3; }
+  .cd .title { font: 800 13px "Apple SD Gothic Neo", system-ui, sans-serif; text-anchor: middle; }
+  .cd .title-up { fill: var(--up); }
+  .cd .title-down { fill: var(--down); }
+
+  /* Takeaway */
+  .takeaway {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 14px;
+    padding: 22px 24px;
+    text-align: center;
+  }
+  .takeaway .section-label { color: rgba(255,255,255,.55); margin-bottom: 8px; }
+  .takeaway p {
+    margin: 0;
+    font-size: clamp(16px, 3.8vw, 19px);
+    font-weight: 700;
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+  .takeaway .hl { color: var(--grow); }
+
+  @media (max-width: 460px) {
+    .compare, .ls, .candle-legend { grid-template-columns: 1fr; }
+    .esg { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="card">
+  <header class="head">
+    <p class="eyebrow">주식 유치원 · 2회차</p>
+    <h1>어디에 투자할까 &<br>롱·숏, 그리고 캔들</h1>
+    <p class="goal">🎯 <b>수업 목표</b> — 가치투자에 필요한 관점(ESG)과 국장·미장의 차이를 알고, 롱·숏 개념과 캔들 읽는 법의 기초를 익힌다.</p>
+  </header>
+
+  <div class="body">
+
+    <!-- ESG -->
+    <section>
+      <p class="section-label">가치투자에 필요한 요소 · ESG</p>
+      <div class="esg">
+        <div class="esg-item">
+          <div class="letter">E</div>
+          <h4>환경</h4>
+          <p>Environment<br>친환경 · 지속가능성</p>
+        </div>
+        <div class="esg-item">
+          <div class="letter">S</div>
+          <h4>소셜</h4>
+          <p>Social<br>사회적 책임 · 관계</p>
+        </div>
+        <div class="esg-item">
+          <div class="letter">G</div>
+          <h4>거버넌스</h4>
+          <p>Governance<br>지배구조 · 투명성</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 국장 vs 미장 -->
+    <section>
+      <p class="section-label">국장 vs 미장, 무엇이 다른가</p>
+      <div class="compare">
+        <div class="vs kr">
+          <h4>🇰🇷 국장 <span class="tag">유의점</span></h4>
+          <ul>
+            <li>휴전국 리스크 <span>— 지정학적 불확실성</span></li>
+            <li>주주 홀대 <span>— 배당·주주환원 인색</span></li>
+            <li>이사회의 부재 <span>— 견제·독립성 약함</span></li>
+          </ul>
+        </div>
+        <div class="vs us">
+          <h4>🇺🇸 미장 <span class="tag">고려사항</span></h4>
+          <ul>
+            <li>세금 <span>— 양도세·배당세 체계 다름</span></li>
+            <li>환율 <span>— 원·달러 변동이 수익에 영향</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 롱 / 숏 -->
+    <section>
+      <p class="section-label">롱 · 숏 개념</p>
+      <div class="ls">
+        <div class="ls-box long">
+          <h4>롱 (Long)</h4>
+          <p>싸게 사서 <b>오르면</b> 버는 것.<br>주가 상승에 베팅.</p>
+          <span class="market">롱장 = 불장 🐂</span>
+        </div>
+        <div class="ls-box short">
+          <h4>숏 (Short)</h4>
+          <p>빌려서 팔고 <b>내리면</b> 되사서 버는 것.<br>주가 하락에 베팅.</p>
+          <span class="market">숏장 = 베어장 🐻</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 캔들 -->
+    <section>
+      <p class="section-label">트레이딩의 기초 · 숫자 읽는 법(캔들)</p>
+      <div class="candle-wrap">
+        <svg class="cd" viewBox="0 0 360 240" role="img"
+             aria-label="양봉(빨강)과 음봉(파랑) 캔들 구조 설명">
+          <!-- 양봉 (상승/빨강) -->
+          <text class="title title-up" x="95" y="24">양봉 · 상승 (빨강)</text>
+          <line class="up-wick" x1="95" y1="40"  x2="95" y2="70"  stroke-width="3"/>
+          <line class="up-wick" x1="95" y1="170" x2="95" y2="200" stroke-width="3"/>
+          <rect class="up-body" x="75" y="70" width="40" height="100" rx="3"/>
+          <!-- labels 양봉 -->
+          <line class="lead" x1="115" y1="40"  x2="150" y2="40"/>
+          <text class="lbl-s" x="153" y="44">고가</text>
+          <line class="lead" x1="115" y1="70"  x2="150" y2="70"/>
+          <text class="lbl" x="153" y="74">종가 ▲</text>
+          <line class="lead" x1="115" y1="170" x2="150" y2="170"/>
+          <text class="lbl" x="153" y="174">시가</text>
+          <line class="lead" x1="115" y1="200" x2="150" y2="200"/>
+          <text class="lbl-s" x="153" y="204">저가</text>
+
+          <!-- 음봉 (하락/파랑) -->
+          <text class="title title-down" x="290" y="24">음봉 · 하락 (파랑)</text>
+          <line class="down-wick" x1="290" y1="40"  x2="290" y2="70"  stroke-width="3"/>
+          <line class="down-wick" x1="290" y1="170" x2="290" y2="200" stroke-width="3"/>
+          <rect class="down-body" x="270" y="70" width="40" height="100" rx="3"/>
+          <!-- labels 음봉 -->
+          <line class="lead" x1="270" y1="40"  x2="235" y2="40"/>
+          <text class="lbl-s" x="232" y="44" text-anchor="end">고가</text>
+          <line class="lead" x1="270" y1="70"  x2="235" y2="70"/>
+          <text class="lbl" x="232" y="74" text-anchor="end">시가</text>
+          <line class="lead" x1="270" y1="170" x2="235" y2="170"/>
+          <text class="lbl" x="232" y="174" text-anchor="end">▼ 종가</text>
+          <line class="lead" x1="270" y1="200" x2="235" y2="200"/>
+          <text class="lbl-s" x="232" y="204" text-anchor="end">저가</text>
+        </svg>
+
+        <div class="candle-legend">
+          <div class="cl up">
+            <b>양봉(빨강)</b><br>종가 &gt; 시가 → <b>올랐다</b>
+          </div>
+          <div class="cl down">
+            <b>음봉(파랑)</b><br>종가 &lt; 시가 → <b>내렸다</b>
+          </div>
+        </div>
+
+        <p class="candle-note">
+          몸통 = <b>시가~종가</b> &nbsp;·&nbsp; 위·아래 꼬리(심지) = <b>고가·저가</b>
+        </p>
+      </div>
+    </section>
+
+    <section class="takeaway">
+      <p class="section-label">한 문장 정리</p>
+      <p><span class="hl">어디에</span> 투자할지 시장을 고르고,<br>롱·숏으로 <span class="hl">방향</span>을, 캔들로 <span class="hl">흐름</span>을 읽는다.</p>
+    </section>
+
+  </div>
+</div>
