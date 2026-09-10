@@ -1,0 +1,434 @@
+<title>주식 유치원 · 3회차 공부카드</title>
+<style>
+  :root {
+    --paper: #f7f4ec;
+    --card: #ffffff;
+    --ink: #232019;
+    --ink-soft: #6b6459;
+    --line: #e7e0d3;
+    --grow: #1f8a5b;
+    --grow-soft: #e6f2ea;
+    --gold: #c98a2b;
+    --gold-soft: #f6ecda;
+    --up: #d43b34;
+    --up-soft: #f8e4e2;
+    --down: #2f6fd0;
+    --down-soft: #e2ebf8;
+    --shadow: 24px 32px 60px -32px rgba(40, 34, 22, .35);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #16140f; --card: #201d17; --ink: #f2ece0; --ink-soft: #a89f8f;
+      --line: #322d24; --grow: #47c98a; --grow-soft: #16281f; --gold: #e0a94a;
+      --gold-soft: #2a2114;
+      --up: #f0665f; --up-soft: #2e1917; --down: #6ba0ea; --down-soft: #161f2e;
+      --shadow: 24px 32px 60px -30px rgba(0, 0, 0, .6);
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #f7f4ec; --card: #ffffff; --ink: #232019; --ink-soft: #6b6459;
+    --line: #e7e0d3; --grow: #1f8a5b; --grow-soft: #e6f2ea; --gold: #c98a2b;
+    --gold-soft: #f6ecda;
+    --up: #d43b34; --up-soft: #f8e4e2; --down: #2f6fd0; --down-soft: #e2ebf8;
+    --shadow: 24px 32px 60px -32px rgba(40, 34, 22, .35);
+  }
+  :root[data-theme="dark"] {
+    --paper: #16140f; --card: #201d17; --ink: #f2ece0; --ink-soft: #a89f8f;
+    --line: #322d24; --grow: #47c98a; --grow-soft: #16281f; --gold: #e0a94a;
+    --gold-soft: #2a2114;
+    --up: #f0665f; --up-soft: #2e1917; --down: #6ba0ea; --down-soft: #161f2e;
+    --shadow: 24px 32px 60px -30px rgba(0, 0, 0, .6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: clamp(16px, 4vw, 56px);
+  }
+
+  .card {
+    width: 100%;
+    max-width: 620px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .head {
+    padding: clamp(28px, 5vw, 40px) clamp(24px, 5vw, 44px) clamp(24px, 4vw, 32px);
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--grow);
+    text-transform: uppercase;
+    margin: 0 0 14px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px; height: 2px;
+    background: var(--grow);
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    text-wrap: balance;
+  }
+  .goal {
+    margin: 16px 0 0;
+    padding: 14px 18px;
+    background: var(--grow-soft);
+    border-radius: 12px;
+    font-size: clamp(15px, 3.4vw, 17px);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .goal b { color: var(--grow); }
+
+  /* ── Body ── */
+  .body {
+    padding: clamp(22px, 4vw, 36px) clamp(24px, 5vw, 44px) clamp(28px, 5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+
+  /* 정의 카드 */
+  .def {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .def-box {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .def-box.spot { background: var(--grow-soft); border-color: var(--grow); }
+  .def-box.fut  { background: var(--gold-soft); border-color: var(--gold); }
+  .def-box h4 { margin: 0 0 6px; font-size: 16px; font-weight: 800; }
+  .def-box.spot h4 { color: var(--grow); }
+  .def-box.fut h4  { color: var(--gold); }
+  .def-box .en {
+    font-size: 11px; font-weight: 700; letter-spacing: .08em;
+    color: var(--ink-soft); text-transform: uppercase;
+  }
+  .def-box p { margin: 8px 0 0; font-size: 13.5px; color: var(--ink); }
+  .def-box .ex {
+    margin-top: 10px; padding-top: 9px;
+    border-top: 1px dashed var(--line);
+    font-size: 12.5px; color: var(--ink-soft);
+  }
+  .def-box .ex b { color: var(--ink); }
+
+  /* 타임라인 도형 */
+  .tl .axis { stroke: var(--line); stroke-width: 2; }
+  .tl .tick { stroke: var(--ink-soft); stroke-width: 1.6; }
+  .tl .spot-mark { fill: var(--grow); }
+  .tl .fut-mark  { fill: var(--gold); }
+  .tl .spot-line { stroke: var(--grow); stroke-width: 2.5; }
+  .tl .fut-line  { stroke: var(--gold); stroke-width: 2.5; stroke-dasharray: 5 4; }
+  .tl .t   { font: 800 12px "Apple SD Gothic Neo", system-ui, sans-serif; }
+  .tl .t-spot { fill: var(--grow); }
+  .tl .t-fut  { fill: var(--gold); }
+  .tl .s   { font: 600 11px "Apple SD Gothic Neo", system-ui, sans-serif; fill: var(--ink-soft); }
+  .tl .n   { font: 700 11.5px "Apple SD Gothic Neo", system-ui, sans-serif; fill: var(--ink); }
+
+  /* 주식시장 적용 */
+  .market-list {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .ml {
+    border: 1px solid var(--line);
+    border-left-width: 4px;
+    border-radius: 10px;
+    padding: 13px 16px;
+  }
+  .ml.spot { border-left-color: var(--grow); }
+  .ml.fut  { border-left-color: var(--gold); }
+  .ml h4 { margin: 0 0 5px; font-size: 14px; font-weight: 800; }
+  .ml.spot h4 { color: var(--grow); }
+  .ml.fut h4  { color: var(--gold); }
+  .ml p { margin: 0; font-size: 13px; color: var(--ink); }
+  .ml .items {
+    margin-top: 8px; font-size: 12px; color: var(--ink-soft);
+  }
+  .ml .chip {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    padding: 3px 9px; border-radius: 999px;
+    margin: 3px 4px 0 0;
+    background: var(--paper); color: var(--ink-soft);
+    border: 1px solid var(--line);
+  }
+
+  /* 체크 4분면 */
+  .quad {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .q {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .q.long  { background: var(--up-soft);   border-color: var(--up); }
+  .q.short { background: var(--down-soft); border-color: var(--down); }
+  .q .head-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px; margin-bottom: 10px;
+  }
+  .q h4 { margin: 0; font-size: 15px; font-weight: 800; }
+  .q.long h4  { color: var(--up); }
+  .q.short h4 { color: var(--down); }
+  .q .kind {
+    font-size: 10.5px; font-weight: 800; letter-spacing: .04em;
+    padding: 3px 9px; border-radius: 999px;
+    background: var(--card);
+  }
+  .q.long .kind  { color: var(--up); }
+  .q.short .kind { color: var(--down); }
+  .q ul { margin: 0; padding-left: 0; list-style: none; }
+  .q li {
+    font-size: 13px; color: var(--ink);
+    padding: 6px 0 6px 18px;
+    border-top: 1px dashed var(--line);
+    position: relative;
+  }
+  .q li:first-child { border-top: none; }
+  .q li::before {
+    content: "✓";
+    position: absolute; left: 0; top: 6px;
+    font-size: 11px; font-weight: 800;
+  }
+  .q.long li::before  { color: var(--up); }
+  .q.short li::before { color: var(--down); }
+  .q li span { color: var(--ink-soft); font-size: 11.5px; }
+
+  .warn {
+    margin-top: 12px;
+    background: var(--gold-soft);
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    color: var(--ink);
+  }
+  .warn b { color: var(--gold); }
+
+  /* Takeaway */
+  .takeaway {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 14px;
+    padding: 22px 24px;
+    text-align: center;
+  }
+  .takeaway .section-label { color: rgba(255,255,255,.55); margin-bottom: 8px; }
+  .takeaway p {
+    margin: 0;
+    font-size: clamp(16px, 3.8vw, 19px);
+    font-weight: 700;
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+  .takeaway .hl { color: var(--grow); }
+  .takeaway .hl2 { color: var(--gold); }
+
+  @media (max-width: 460px) {
+    .def, .quad { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    body { padding: 0; background: var(--card); }
+    .card { border: none; box-shadow: none; max-width: none; }
+    .body > section { break-inside: avoid; }
+  }
+</style>
+
+<div class="card">
+  <header class="head">
+    <p class="eyebrow">주식 유치원 · 3회차</p>
+    <h1>현물과 선물,<br>그리고 롱·숏</h1>
+    <p class="goal">🎯 <b>수업 목표</b> — 현물과 선물이 무엇인지 구분하고, 주식시장에서 각각 어떻게 거래되는지 안다. 롱·숏을 하기 전에 반드시 알아야 할 것들을 체크한다.</p>
+  </header>
+
+  <div class="body">
+
+    <!-- 정의 -->
+    <section>
+      <p class="section-label">현물 vs 선물 · 기본 정의</p>
+      <div class="def">
+        <div class="def-box spot">
+          <h4>현물</h4>
+          <div class="en">Spot</div>
+          <p><b>지금</b> 돈을 내고 <b>지금</b> 물건을 받는 거래.<br>계약과 결제가 동시에 끝난다.</p>
+          <p class="ex">🥕 시장에서 <b>당근 1000원</b> 주고 바로 받아옴 — 끝.</p>
+        </div>
+        <div class="def-box fut">
+          <h4>선물</h4>
+          <div class="en">Futures</div>
+          <p><b>미래의 날짜·가격</b>을 지금 약속하는 계약.<br>결제는 만기일에 이뤄진다.</p>
+          <p class="ex">🥕 “3개월 뒤 당근을 <b>1000원에</b> 사겠다”고 지금 약속.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 타임라인 도형 -->
+    <section>
+      <p class="section-label">시간축으로 보면</p>
+      <svg class="tl" viewBox="0 0 360 150" role="img"
+           aria-label="현물은 오늘 계약과 결제가 동시에, 선물은 오늘 계약하고 만기일에 결제">
+        <!-- 축 -->
+        <line class="axis" x1="30" y1="120" x2="335" y2="120"/>
+        <line class="tick" x1="60"  y1="112" x2="60"  y2="128"/>
+        <line class="tick" x1="300" y1="112" x2="300" y2="128"/>
+        <text class="s" x="60"  y="142" text-anchor="middle">오늘</text>
+        <text class="s" x="300" y="142" text-anchor="middle">만기일 (미래)</text>
+
+        <!-- 현물 -->
+        <text class="t t-spot" x="30" y="36">현물</text>
+        <line class="spot-line" x1="60" y1="44" x2="60" y2="60"/>
+        <circle class="spot-mark" cx="60" cy="44" r="6"/>
+        <text class="n" x="74" y="48">계약 + 결제 동시</text>
+
+        <!-- 선물 -->
+        <text class="t t-fut" x="30" y="82">선물</text>
+        <circle class="fut-mark" cx="60" cy="90" r="6"/>
+        <line class="fut-line" x1="66" y1="90" x2="294" y2="90"/>
+        <circle class="fut-mark" cx="300" cy="90" r="6"/>
+        <text class="n" x="74" y="80">약속(계약)</text>
+        <text class="n" x="300" y="80" text-anchor="middle">결제</text>
+      </svg>
+    </section>
+
+    <!-- 주식시장에서 -->
+    <section>
+      <p class="section-label">주식시장에서는?</p>
+      <div class="market-list">
+        <div class="ml spot">
+          <h4>주식시장에서의 현물</h4>
+          <p>우리가 흔히 말하는 <b>주식 그 자체</b>. 돈을 내고 그 회사의 지분(주식)을 실제로 사서 계좌에 보유한다. 만기가 없어 <b>팔 때까지 계속 들고 갈 수 있다.</b></p>
+          <div class="items">
+            <span class="chip">삼성전자 1주</span>
+            <span class="chip">애플 1주</span>
+            <span class="chip">ETF</span>
+            <span class="chip">배당 받음 ✓</span>
+            <span class="chip">의결권 있음 ✓</span>
+          </div>
+        </div>
+        <div class="ml fut">
+          <h4>주식시장에서의 선물</h4>
+          <p>주식이나 <b>지수를 미래 가격으로 사고팔기로 한 계약</b>. 실제 주식을 갖는 게 아니라 <b>가격 차이만 정산</b>한다. 증거금만 넣고 큰 금액을 굴리는 <b>레버리지</b>가 붙고, <b>만기</b>가 있다.</p>
+          <div class="items">
+            <span class="chip">코스피200 선물</span>
+            <span class="chip">나스닥100 선물</span>
+            <span class="chip">레버리지 ⚡</span>
+            <span class="chip">만기 있음 ⏳</span>
+            <span class="chip">배당 없음 ✕</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 현물 롱/숏 -->
+    <section>
+      <p class="section-label">현물로 하고 싶다면 · 알아야 할 것</p>
+      <div class="quad">
+        <div class="q long">
+          <div class="head-row">
+            <h4>현물 롱</h4>
+            <span class="kind">사서 보유</span>
+          </div>
+          <ul>
+            <li>가장 기본이고 <b>가장 안전한</b> 방식 <span>— 내 돈만큼만 산다</span></li>
+            <li>최대 손실은 <b>투자 원금까지</b> <span>— 빚지지 않는다</span></li>
+            <li>만기가 없으니 <b>기다릴 수 있다</b> <span>— 시간이 내 편</span></li>
+            <li><b>배당·의결권</b>이 따라온다</li>
+            <li>확인할 것: <b>기업 가치</b> <span>— PER·PBR·ROE (1회차)</span></li>
+          </ul>
+        </div>
+        <div class="q short">
+          <div class="head-row">
+            <h4>현물 숏</h4>
+            <span class="kind">공매도</span>
+          </div>
+          <ul>
+            <li>주식을 <b>빌려서 먼저 팔고</b> 나중에 되사서 갚는다</li>
+            <li>빌리는 값 = <b>대차 수수료·이자</b>가 매일 나간다</li>
+            <li>손실이 <b>무한대</b>일 수 있다 <span>— 주가 상단은 뚫려 있음</span></li>
+            <li><b>숏 스퀴즈</b> 주의 <span>— 급등 시 강제 청산</span></li>
+            <li>국내는 개인에게 <b>제약이 크다</b> <span>— 인버스 ETF가 현실적 대안</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 선물 롱/숏 -->
+    <section>
+      <p class="section-label">선물로 하고 싶다면 · 알아야 할 것</p>
+      <div class="quad">
+        <div class="q long">
+          <div class="head-row">
+            <h4>선물 롱</h4>
+            <span class="kind">매수 포지션</span>
+          </div>
+          <ul>
+            <li><b>증거금</b>만 넣고 큰 금액을 움직인다 <span>— 레버리지</span></li>
+            <li>10% 오르면 크게 벌지만 <b>10% 내리면 계좌가 날아간다</b></li>
+            <li>손실이 커지면 <b>마진콜 · 강제청산</b></li>
+            <li><b>만기일</b>이 있다 <span>— 넘기려면 롤오버 비용</span></li>
+            <li>반드시 <b>손절선</b>을 정하고 들어간다</li>
+          </ul>
+        </div>
+        <div class="q short">
+          <div class="head-row">
+            <h4>선물 숏</h4>
+            <span class="kind">매도 포지션</span>
+          </div>
+          <ul>
+            <li>주식을 안 빌려도 <b>바로 하락에 베팅</b> 가능</li>
+            <li>레버리지 + 하락 베팅 = <b>가장 위험한 조합</b></li>
+            <li>손실 <b>무한대</b> + <b>강제청산</b>까지 겹친다</li>
+            <li>시장은 장기적으로 <b>우상향</b> <span>— 구조적으로 불리</span></li>
+            <li>초보자는 <b>헤지 목적</b>으로만, 소액으로</li>
+          </ul>
+        </div>
+      </div>
+      <p class="warn">⚠️ <b>선물은 유치원 과정이 아니다.</b> 개념만 알아두고, 실제 매매는 현물에서 충분히 경험을 쌓은 뒤에. 레버리지는 수익률이 아니라 <b>버틸 수 있는 시간</b>을 줄인다.</p>
+    </section>
+
+    <section class="takeaway">
+      <p class="section-label">한 문장 정리</p>
+      <p><span class="hl">현물</span>은 지금 사서 내 것이 되는 것,<br><span class="hl2">선물</span>은 미래 가격을 약속하는 계약.<br>초보는 <span class="hl">현물 롱</span>에서 시작한다.</p>
+    </section>
+
+  </div>
+</div>
