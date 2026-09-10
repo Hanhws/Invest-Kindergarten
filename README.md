@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.png" alt="주식 유치원 - KOSPI KOSDAQ" width="820">
+</p>
+
 # 🐣 주식 유치원
 
 주식 투자를 처음 시작하는 사람을 위한 수업 자료 모음입니다.
