@@ -1,0 +1,818 @@
+<title>주식 유치원 · 5·6회차 공부카드</title>
+<style>
+  :root {
+    --paper: #f7f4ec;
+    --card: #ffffff;
+    --ink: #232019;
+    --ink-soft: #6b6459;
+    --line: #e7e0d3;
+    --grow: #1f8a5b;
+    --grow-soft: #e6f2ea;
+    --gold: #c98a2b;
+    --gold-soft: #f6ecda;
+    --up: #d43b34;
+    --up-soft: #f8e4e2;
+    --down: #2f6fd0;
+    --down-soft: #e2ebf8;
+    --shadow: 24px 32px 60px -32px rgba(40, 34, 22, .35);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #16140f; --card: #201d17; --ink: #f2ece0; --ink-soft: #a89f8f;
+      --line: #322d24; --grow: #47c98a; --grow-soft: #16281f; --gold: #e0a94a;
+      --gold-soft: #2a2114;
+      --up: #f0665f; --up-soft: #2e1917; --down: #6ba0ea; --down-soft: #161f2e;
+      --shadow: 24px 32px 60px -30px rgba(0, 0, 0, .6);
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #f7f4ec; --card: #ffffff; --ink: #232019; --ink-soft: #6b6459;
+    --line: #e7e0d3; --grow: #1f8a5b; --grow-soft: #e6f2ea; --gold: #c98a2b;
+    --gold-soft: #f6ecda;
+    --up: #d43b34; --up-soft: #f8e4e2; --down: #2f6fd0; --down-soft: #e2ebf8;
+    --shadow: 24px 32px 60px -32px rgba(40, 34, 22, .35);
+  }
+  :root[data-theme="dark"] {
+    --paper: #16140f; --card: #201d17; --ink: #f2ece0; --ink-soft: #a89f8f;
+    --line: #322d24; --grow: #47c98a; --grow-soft: #16281f; --gold: #e0a94a;
+    --gold-soft: #2a2114;
+    --up: #f0665f; --up-soft: #2e1917; --down: #6ba0ea; --down-soft: #161f2e;
+    --shadow: 24px 32px 60px -30px rgba(0, 0, 0, .6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: clamp(16px, 4vw, 56px);
+  }
+
+  .card {
+    width: 100%;
+    max-width: 620px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .head {
+    padding: clamp(28px, 5vw, 40px) clamp(24px, 5vw, 44px) clamp(24px, 4vw, 32px);
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--grow);
+    text-transform: uppercase;
+    margin: 0 0 14px;
+  }
+  .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--grow); }
+  h1 {
+    margin: 0;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    text-wrap: balance;
+  }
+  .sub { margin: 10px 0 0; font-size: 14px; color: var(--ink-soft); }
+  .goal {
+    margin: 16px 0 0;
+    padding: 14px 18px;
+    background: var(--grow-soft);
+    border-radius: 12px;
+    font-size: clamp(15px, 3.4vw, 17px);
+    font-weight: 600;
+  }
+  .goal b { color: var(--grow); }
+
+  /* ── Body ── */
+  .body {
+    padding: clamp(22px, 4vw, 36px) clamp(24px, 5vw, 44px) clamp(28px, 5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .section-label {
+    font-size: 12px; font-weight: 700; letter-spacing: .1em;
+    color: var(--ink-soft); text-transform: uppercase; margin: 0 0 16px;
+  }
+  .chapter {
+    display: flex; align-items: center; gap: 10px;
+    margin: 6px 0 -12px;
+  }
+  .chapter::before, .chapter::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .chapter span {
+    font-size: 11.5px; font-weight: 800; letter-spacing: .12em;
+    color: var(--gold); white-space: nowrap;
+  }
+
+  /* 핵심 문장 박스 */
+  .lead {
+    border: 1px solid var(--gold);
+    background: var(--gold-soft);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .lead p { margin: 0; font-size: 14.5px; }
+  .lead p + p { margin-top: 8px; }
+  .lead .big {
+    font-size: clamp(17px, 4vw, 20px);
+    font-weight: 800; line-height: 1.45; text-wrap: balance;
+  }
+  .lead .big b { color: var(--gold); }
+  .lead .src {
+    margin-top: 10px; padding-top: 9px;
+    border-top: 1px dashed var(--gold);
+    font-size: 12.5px; color: var(--ink-soft);
+  }
+  .lead .src b { color: var(--ink); }
+
+  /* 3분할 정의 */
+  .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .trio .t {
+    border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px 14px; background: var(--paper);
+  }
+  .trio .t h4 { margin: 0 0 6px; font-size: 13.5px; font-weight: 800; color: var(--gold); }
+  .trio .t p { margin: 0; font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; }
+  .trio .t p b { color: var(--ink); }
+
+  /* 좌우 대비 */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .nb { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .nb.grow { border-color: var(--grow); background: var(--grow-soft); }
+  .nb.loss { border-color: var(--up);   background: var(--up-soft); }
+  .nb.cool { border-color: var(--down); background: var(--down-soft); }
+  .nb.warm { border-color: var(--gold); background: var(--gold-soft); }
+  .nb h4 { margin: 0 0 4px; font-size: 14.5px; font-weight: 800; }
+  .nb.grow h4 { color: var(--grow); }
+  .nb.loss h4 { color: var(--up); }
+  .nb.cool h4 { color: var(--down); }
+  .nb.warm h4 { color: var(--gold); }
+  .nb .cap { font-size: 11.5px; color: var(--ink-soft); }
+  .nb ul { margin: 10px 0 0; padding: 0; list-style: none; }
+  .nb li {
+    display: flex; justify-content: space-between; gap: 10px;
+    font-size: 13px; padding: 6px 0; border-top: 1px dashed var(--line);
+  }
+  .nb li:first-child { border-top: none; }
+  .nb li span { color: var(--ink-soft); }
+  .nb li b { font-weight: 800; }
+  .nb .say { margin: 10px 0 0; font-size: 12.5px; }
+  .nb.grow .say b { color: var(--grow); }
+  .nb.loss .say b { color: var(--up); }
+  .nb.cool .say b { color: var(--down); }
+  .nb.warm .say b { color: var(--gold); }
+
+  /* 표 */
+  .rate { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .rate .row {
+    display: grid; grid-template-columns: .8fr 1fr 1fr .9fr;
+    align-items: center; gap: 8px; padding: 11px 16px;
+    border-top: 1px solid var(--line); font-size: 13.5px;
+  }
+  .rate .row:first-child { border-top: none; }
+  .rate .row.h {
+    background: var(--paper); font-size: 11.5px; font-weight: 700;
+    letter-spacing: .04em; color: var(--ink-soft);
+  }
+  .rate .row b { font-weight: 800; }
+  .rate .row .real { font-weight: 800; color: var(--up); text-align: right; }
+  .rate .row.mark { background: var(--up-soft); }
+  .rate.two .row { grid-template-columns: 1fr 1fr; }
+  .rate.two .row .real { text-align: right; }
+
+  /* 단계 리스트 */
+  .steps-list { display: flex; flex-direction: column; gap: 0; counter-reset: s; }
+  .step {
+    display: grid; grid-template-columns: 30px 1fr; gap: 12px;
+    padding: 12px 0; border-top: 1px dashed var(--line);
+  }
+  .step:first-child { border-top: none; padding-top: 0; }
+  .step .n {
+    width: 26px; height: 26px; border-radius: 999px;
+    background: var(--gold-soft); color: var(--gold);
+    border: 1px solid var(--gold);
+    display: grid; place-items: center;
+    font-size: 12px; font-weight: 800;
+  }
+  .step h4 { margin: 2px 0 3px; font-size: 14px; font-weight: 800; }
+  .step p { margin: 0; font-size: 12.8px; color: var(--ink-soft); }
+  .step p b { color: var(--ink); }
+
+  /* 미스매치 도식 */
+  .mm { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .mm .pair { display: grid; grid-template-columns: 1fr 44px 1fr; align-items: center; gap: 8px; }
+  .mm .side { border-radius: 10px; padding: 12px 14px; text-align: center; }
+  .mm .side.short { background: var(--down-soft); border: 1px solid var(--down); }
+  .mm .side.long  { background: var(--up-soft);   border: 1px solid var(--up); }
+  .mm .side .k { font-size: 11px; font-weight: 700; color: var(--ink-soft); }
+  .mm .side .v { font-size: 14.5px; font-weight: 800; margin-top: 3px; }
+  .mm .side.short .v { color: var(--down); }
+  .mm .side.long  .v { color: var(--up); }
+  .mm .gap { text-align: center; font-size: 18px; font-weight: 800; color: var(--gold); }
+  .mm .cap { margin: 12px 0 0; font-size: 12.5px; color: var(--ink-soft); text-align: center; }
+  .mm .cap b { color: var(--ink); }
+
+  /* 타임라인 */
+  .tl { border-left: 2px solid var(--up); padding-left: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .tl .ev { position: relative; }
+  .tl .ev::before {
+    content: ""; position: absolute; left: -22px; top: 7px;
+    width: 9px; height: 9px; border-radius: 999px;
+    background: var(--up); border: 2px solid var(--card);
+  }
+  .tl .d { font-size: 12px; font-weight: 800; color: var(--up); }
+  .tl .t { font-size: 13.2px; margin-top: 2px; }
+  .tl .t b { font-weight: 800; }
+
+  /* 2×2 표 */
+  .quad { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .quad .q { border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; background: var(--paper); }
+  .quad .q .tag {
+    display: inline-block; font-size: 11px; font-weight: 800;
+    padding: 3px 9px; border-radius: 999px; margin-bottom: 7px;
+  }
+  .quad .q.bull .tag { background: var(--down-soft); color: var(--down); border: 1px solid var(--down); }
+  .quad .q.bear .tag { background: var(--up-soft);   color: var(--up);   border: 1px solid var(--up); }
+  .quad .q h4 { margin: 0 0 4px; font-size: 13.5px; font-weight: 800; }
+  .quad .q p { margin: 0; font-size: 12.3px; color: var(--ink-soft); line-height: 1.5; }
+
+  /* 주의 박스 */
+  .warn {
+    margin-top: 12px; background: var(--gold-soft);
+    border: 1px solid var(--gold); border-radius: 10px;
+    padding: 12px 16px; font-size: 12.5px;
+  }
+  .warn b { color: var(--gold); }
+  .warn.red { background: var(--up-soft); border-color: var(--up); }
+  .warn.red b { color: var(--up); }
+
+  /* 한 줄 강조 */
+  .oneline {
+    border: 1px solid var(--grow); background: var(--grow-soft);
+    border-radius: 12px; padding: 16px 20px; text-align: center;
+  }
+  .oneline p { margin: 0; font-size: clamp(15px, 3.6vw, 18px); font-weight: 800; line-height: 1.5; text-wrap: balance; }
+  .oneline p b { color: var(--grow); }
+  .oneline .s { margin-top: 8px; font-size: 12.5px; font-weight: 600; color: var(--ink-soft); }
+
+  /* 질문 */
+  .ask { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .ask + .ask { margin-top: 12px; }
+  .ask h4 { margin: 0 0 8px; font-size: 14.5px; font-weight: 800; color: var(--grow); }
+  .ask p { margin: 0; font-size: 12.8px; color: var(--ink-soft); }
+  .ask p b { color: var(--ink); }
+
+  /* 용어 */
+  .terms { display: flex; flex-direction: column; gap: 0; }
+  .term {
+    display: grid; grid-template-columns: 130px 1fr; gap: 12px;
+    padding: 10px 0; border-top: 1px dashed var(--line); font-size: 13px;
+  }
+  .term:first-child { border-top: none; }
+  .term dt { font-weight: 800; color: var(--gold); }
+  .term dd { margin: 0; color: var(--ink-soft); }
+  .term dd b { color: var(--ink); }
+
+  /* Takeaway */
+  .takeaway {
+    background: var(--ink); color: var(--paper);
+    border-radius: 14px; padding: 22px 24px; text-align: center;
+  }
+  .takeaway .section-label { color: rgba(255,255,255,.55); margin-bottom: 8px; }
+  .takeaway p {
+    margin: 0; font-size: clamp(16px, 3.8vw, 19px);
+    font-weight: 700; line-height: 1.55; text-wrap: balance;
+  }
+  .takeaway .hl { color: var(--grow); }
+  .takeaway .hl2 { color: var(--gold); }
+
+  @media (max-width: 460px) {
+    .duo, .quad { grid-template-columns: 1fr; }
+    .trio { grid-template-columns: 1fr; }
+    .rate .row { grid-template-columns: 1fr 1fr; }
+    .mm .pair { grid-template-columns: 1fr; }
+    .mm .gap { transform: rotate(90deg); }
+    .term { grid-template-columns: 1fr; gap: 2px; }
+  }
+
+  @media print {
+    body { padding: 0; background: var(--card); }
+    .card { border: none; box-shadow: none; max-width: none; }
+    .body > section { break-inside: avoid; }
+  }
+</style>
+
+<div class="card">
+  <header class="head">
+    <p class="eyebrow">주식 유치원 · 5·6회차</p>
+    <h1>채권과 금리</h1>
+    <p class="sub">금리가 오르면 채권 가격은 왜 내려갈까 — 그리고 그 한 줄이 어떻게 은행 하나를 무너뜨렸나</p>
+    <p class="goal">🎯 <b>수업 목표</b> — 뉴스에서 매일 듣지만 아무도 설명해주지 않던 세 마디를 내 말로 설명한다. ① <b>장단기 금리 역전</b> ② <b>금리 변동 위험</b> ③ <b>제일 안전한 미국 국채를 샀는데 은행이 망했다</b></p>
+  </header>
+
+  <div class="body">
+
+    <div class="chapter"><span>PART 1 · 금리와 채권의 기본</span></div>
+
+    <!-- 1. 금리란 -->
+    <section>
+      <p class="section-label">출발점 · 금리는 돈을 빌리는 값</p>
+      <div class="lead">
+        <p class="big">금리 = <b>돈의 값</b></p>
+        <p>물건에 값이 붙듯 돈도 빌려 쓰면 값을 낸다. 빌리면 <b>대출금리</b>, 빌려주면 <b>예금금리</b> — 같은 하나의 값을 내가 어느 쪽에 서 있느냐에 따라 다르게 부를 뿐이다.</p>
+        <p class="src">📌 <b>금리가 오른다 = 돈이 비싸진다.</b> 빌려서 하는 모든 것(집·사업·투자)이 한꺼번에 힘들어진다.</p>
+      </div>
+    </section>
+
+    <!-- 2. 금리를 이루는 세 값 -->
+    <section>
+      <p class="section-label">왜 돈에 값이 붙나 · 세 가지가 섞여 있다</p>
+      <div class="trio">
+        <div class="t">
+          <h4>① 시간의 값</h4>
+          <p>지금 쓸 돈을 나중에 받는 대가. <b>오래 빌려줄수록 커진다.</b></p>
+        </div>
+        <div class="t">
+          <h4>② 신용의 값</h4>
+          <p>떼일 위험을 대신 져주는 대가. <b>위험할수록 커진다.</b></p>
+        </div>
+        <div class="t">
+          <h4>③ 물가의 값</h4>
+          <p>그동안 돈 가치가 녹는 만큼 받는 대가. <b>4회차의 물가 3%.</b></p>
+        </div>
+      </div>
+      <div class="duo" style="margin-top:12px">
+        <div class="nb cool">
+          <h4>기준금리</h4>
+          <div class="cap">중앙은행이 정한다</div>
+          <p class="say">한국은행·연준. 뉴스에서 <b>“금리 인상·인하”</b>라 하는 게 이것. 커브의 <b>왼쪽 끝</b>.</p>
+        </div>
+        <div class="nb warm">
+          <h4>시장금리</h4>
+          <div class="cap">시장이 정한다</div>
+          <p class="say">사려는 사람과 팔려는 사람이 만나 결정된다. 커브의 <b>오른쪽 끝</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 채권이란 -->
+    <section>
+      <p class="section-label">채권 · 언제 얼마를 받을지 미리 다 적어놓은 종이</p>
+      <dl class="terms">
+        <div class="term"><dt>발행자</dt><dd>돈을 빌리는 쪽. 국가면 <b>국채</b>, 회사면 <b>회사채</b></dd></div>
+        <div class="term"><dt>만기</dt><dd>원금을 돌려받는 날</dd></div>
+        <div class="term"><dt>쿠폰 (표면금리)</dt><dd>종이에 인쇄된 이자율. <b>절대 안 변한다</b></dd></div>
+      </dl>
+      <p class="warn">💡 채권의 영어 이름은 <b>Fixed Income(고정된 수익)</b>. 그런데 <b>무엇이</b> 고정된 걸까? — 수업 전체가 이 질문 하나에 달려 있다.</p>
+    </section>
+
+    <!-- 4. 예금 vs 채권 -->
+    <section>
+      <p class="section-label">예금과 채권 · 고정된 지점이 서로 반대편에 있다</p>
+      <div class="duo">
+        <div class="nb cool">
+          <h4>예금</h4>
+          <div class="cap">나는 현재에 서서 미래를 본다</div>
+          <ul>
+            <li><span>고정된 것</span><b>지금 넣은 1만 원</b></li>
+            <li><span>변하는 것</span><b>미래에 받을 돈</b></li>
+          </ul>
+          <p class="say">금리만큼 <b>불어난다</b>.</p>
+        </div>
+        <div class="nb warm">
+          <h4>채권</h4>
+          <div class="cap">미래는 못 박혀 있고, 내가 얼마에 살지를 정한다</div>
+          <ul>
+            <li><span>고정된 것</span><b>나중에 받을 1만 원</b></li>
+            <li><span>변하는 것</span><b>지금 내는 가격</b></li>
+          </ul>
+          <p class="say">금리만큼 <b>깎아서 당겨온다</b>.</p>
+        </div>
+      </div>
+      <p class="warn">📐 미래의 돈을 지금 가격으로 당겨오는 것 — 이걸 <b>할인(割引)</b>이라고 한다.</p>
+    </section>
+
+    <!-- 5. 오늘의 한 문장 -->
+    <section>
+      <div class="oneline">
+        <p>채권 가격은 <b>금리와 반대로</b> 간다</p>
+        <p class="s">금리 ↑ → 채권 가격 ↓ &nbsp;·&nbsp; 금리 ↓ → 채권 가격 ↑</p>
+      </div>
+      <p class="warn">🏬 <b>백화점 세일로 생각하면 1초.</b> 정가 100만 원은 안 변하고 변하는 건 할인율뿐이다. 10% 할인이면 90만 원, 30% 할인이면 70만 원 — <b>할인율이 올라갈수록 내가 내는 가격은 내려간다.</b><br>정가 = 만기에 받을 돈 · 할인율 = <b>금리</b> · 내가 내는 돈 = <b>지금 채권 가격</b></p>
+    </section>
+
+    <!-- 6. 만기별 민감도 -->
+    <section>
+      <p class="section-label">숫자로 확인 · 만기가 길수록 훨씬 크게 흔들린다</p>
+      <div class="rate">
+        <div class="row h">
+          <div>만기</div><div>3% 할인</div><div>5% 할인</div><div>변화</div>
+        </div>
+        <div class="row"><div><b>1년</b></div><div>9,709원</div><div>9,524원</div><div class="real">−1.9%</div></div>
+        <div class="row"><div><b>3년</b></div><div>9,151원</div><div>8,638원</div><div class="real">−5.6%</div></div>
+        <div class="row"><div><b>10년</b></div><div>7,441원</div><div>6,139원</div><div class="real">−17.5%</div></div>
+        <div class="row mark"><div><b>30년</b></div><div>4,120원</div><div>2,314원</div><div class="real">−43.8%</div></div>
+      </div>
+      <p class="warn red">⚠️ 금리는 똑같이 <b>2%p</b> 움직였다. 할인을 서른 번 겹쳐서 하면 이렇게 된다 — <b>4회차의 복리가 반대 방향으로 작동한 것.</b> 이 표 하나가 다음 장에서 은행 하나를 무너뜨린다.</p>
+    </section>
+
+    <!-- 7. 손실의 두 얼굴 -->
+    <section>
+      <p class="section-label">그럼 손해가 나나 · 만기까지 들고 가면 손실은 없다</p>
+      <div class="duo">
+        <div class="nb loss">
+          <h4>평가손실</h4>
+          <div class="cap">장부에만 있는 숫자</div>
+          <p class="say">지금 팔면 손해다. <b>안 팔면 아직 나지 않은 손실</b>이다.</p>
+        </div>
+        <div class="nb warm">
+          <h4>기회손실</h4>
+          <div class="cap">안 잃었지만 뒤처진다</div>
+          <p class="say">내 예금은 1%인데 옆집은 5%다. <b>잃지는 않았지만 지고 있는 손실</b>이다.</p>
+        </div>
+      </div>
+      <p class="warn red">🔑 <b>채권의 손실은 가격이 떨어져서 나는 게 아니라, 만기 전에 팔아야 해서 난다.</b> 1% 예금을 깨고 5%로 갈아타려면 위약금을 문다. 채권도 똑같이, 지금 갈아타려면 떨어진 가격에 팔아야 한다.</p>
+    </section>
+
+    <div class="chapter"><span>PART 2 · 미스매치 전략과 사고</span></div>
+
+    <!-- 8. 미스매치 전략 (신규) -->
+    <section>
+      <p class="section-label">미스매치 전략 · 짧게 빌려서 길게 굴린다</p>
+      <div class="lead">
+        <p class="big">미스매치(Mismatch) 전략<br>= <b>빌린 조건</b>과 <b>굴리는 조건</b>을 일부러 어긋나게 두고<br>그 차이를 먹는 것</p>
+        <p>싸고 짧은 돈을 빌려서, 비싸고 긴 자산에 넣는다. 그 <b>스프레드(금리 차)</b>가 수익이다. 금융회사가 돈을 버는 가장 흔한 방법이자, 세상 모든 금융사고의 공통 뿌리다.</p>
+      </div>
+      <div class="mm" style="margin-top:12px">
+        <div class="pair">
+          <div class="side short">
+            <div class="k">부채 · 갚을 돈</div>
+            <div class="v">짧고 싸다</div>
+          </div>
+          <div class="gap">↔</div>
+          <div class="side long">
+            <div class="k">자산 · 가진 것</div>
+            <div class="v">길고 비싸다</div>
+          </div>
+        </div>
+        <p class="cap">평소엔 <b>차이 = 수익</b>. 조건이 뒤집히는 순간 <b>차이 = 사고</b>.</p>
+      </div>
+      <div class="trio" style="margin-top:12px">
+        <div class="t">
+          <h4>만기 미스매치</h4>
+          <p>1년 예금으로 <b>10년 국채</b>를 산다. → <b>SVB</b></p>
+        </div>
+        <div class="t">
+          <h4>통화 미스매치</h4>
+          <p><b>엔화</b>로 빌려서 달러 자산에 넣는다. → <b>엔 캐리</b></p>
+        </div>
+        <div class="t">
+          <h4>유동성 미스매치</h4>
+          <p>언제든 빼갈 수 있는 돈으로 <b>안 팔리는 것</b>을 산다.</p>
+        </div>
+      </div>
+      <p class="warn red">⚠️ <b>미스매치 전략의 수익은 “아무 일도 안 일어나는 동안”만 쌓인다.</b> 어긋나 있던 두 조건 중 하나가 갑자기 움직이면, 그동안 쌓은 수익보다 훨씬 큰 손실이 한 번에 난다.</p>
+    </section>
+
+    <!-- 9. SVB -->
+    <section>
+      <p class="section-label">사례 ① 만기 미스매치 · 실리콘밸리은행 (2023)</p>
+      <div class="steps-list">
+        <div class="step">
+          <div class="n">1</div>
+          <div><h4>예금이 밀려든다</h4><p>스타트업 돈이 쏟아져 들어왔다. 은행은 <b>예금 이자를 줘야 하니</b> 어디선가 벌어야 한다.</p></div>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <div><h4>제일 안전한 곳에 넣는다</h4><p>주식은 위험하고 부동산도 안 된다. <b>세계에서 가장 안전한 미국 국채</b>를 산다.</p></div>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <div><h4>짧은 건 남는 게 없다</h4><p>1년짜리 국채 금리가 예금에 줄 이자와 거의 같다.</p></div>
+        </div>
+        <div class="step">
+          <div class="n">4</div>
+          <div><h4>그래서 긴 채권을 산다</h4><p>금리가 더 높은 <b>10년·20년</b>짜리를 산다. 그 순간 <b>만기 미스매치</b>가 완성된다.</p></div>
+        </div>
+      </div>
+      <div class="mm" style="margin-top:14px">
+        <div class="pair">
+          <div class="side short"><div class="k">부채</div><div class="v">예금 1년</div></div>
+          <div class="gap">↔</div>
+          <div class="side long"><div class="k">자산</div><div class="v">미국 국채 10년</div></div>
+        </div>
+        <p class="cap">그리고 2022년, 미국 기준금리가 1년 남짓 만에 <b>0%대 → 4~5%대</b>로 올라간다.</p>
+      </div>
+      <div class="duo" style="margin-top:12px">
+        <div class="nb loss"><h4>예금이 빠져나간다</h4><p class="say">“1% 말고 <b>5% 주는 데</b>로 갈래”</p></div>
+        <div class="nb loss"><h4>장기 국채가 폭락한다</h4><p class="say">앞 표의 <b>−17.5%</b>가 현실이 된다</p></div>
+      </div>
+      <div class="rate two" style="margin-top:12px">
+        <div class="row h"><div>2022년 말 기준</div><div>금액</div></div>
+        <div class="row"><div>장부에 안 잡힌 평가손실</div><div class="real">약 152억 달러</div></div>
+        <div class="row mark"><div>은행 자기자본</div><div class="real">약 160억 달러</div></div>
+      </div>
+      <div class="tl" style="margin-top:14px">
+        <div class="ev"><div class="d">3월 8일</div><div class="t">보유 채권을 팔아 <b>18억 달러 손실을 확정</b>하고 20억 달러 증자를 발표</div></div>
+        <div class="ev"><div class="d">3월 9일</div><div class="t">하루 만에 약 <b>420억 달러</b> 인출 요청</div></div>
+        <div class="ev"><div class="d">3월 10일</div><div class="t"><b>은행 폐쇄</b></div></div>
+      </div>
+      <div class="oneline" style="margin-top:14px">
+        <p>채권은 만기까지 가면 손실이 없다.<br>그 은행은 <b>만기까지 못 가서</b> 망했다.</p>
+        <p class="s">미국은 망하지 않았다. 국채도 약속대로 다 갚았다.</p>
+      </div>
+    </section>
+
+    <!-- 10. 엔 캐리 트레이드 (신규) -->
+    <section>
+      <p class="section-label">사례 ② 통화 미스매치 · 엔 캐리 트레이드</p>
+      <div class="lead">
+        <p class="big">세계에서 가장 유명한 미스매치<br><b>엔화로 빌려서, 다른 나라 자산에 넣는다</b></p>
+        <p>일본은 수십 년간 금리가 <b>0% 근처</b>였다. 거의 공짜로 엔화를 빌려 달러로 바꾸고, 금리 높은 미국 국채·주식·신흥국 자산에 넣는다. <b>금리 차(carry)</b>를 그냥 먹는 구조다.</p>
+      </div>
+      <div class="steps-list" style="margin-top:14px">
+        <div class="step">
+          <div class="n">1</div>
+          <div><h4>엔화를 거의 0%에 빌린다</h4><p>부채는 <b>엔화</b>, 금리는 <b>0% 근처</b>.</p></div>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <div><h4>달러로 바꿔 해외 자산에 넣는다</h4><p>미국채 4~5%, 미국 주식, 신흥국 채권. 자산은 <b>달러</b>.</p></div>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <div><h4>가만히 있어도 수익이 쌓인다</h4><p>금리 차 + 엔화가 약해지면 <b>환차익</b>까지. 두 번 번다.</p></div>
+        </div>
+      </div>
+      <div class="mm" style="margin-top:14px">
+        <div class="pair">
+          <div class="side short"><div class="k">부채 · 엔화</div><div class="v">금리 0%</div></div>
+          <div class="gap">↔</div>
+          <div class="side long"><div class="k">자산 · 달러</div><div class="v">금리 4~5%</div></div>
+        </div>
+        <p class="cap">SVB는 <b>기간</b>이 어긋났고, 엔 캐리는 <b>통화</b>가 어긋나 있다.</p>
+      </div>
+      <p class="warn red">⚠️ 전제는 딱 두 가지다. ① <b>일본 금리가 계속 낮을 것</b> ② <b>엔화가 강해지지 않을 것.</b> 이 중 하나만 깨져도 전략이 성립하지 않는다.</p>
+    </section>
+
+    <!-- 11. 엔 캐리 청산 -->
+    <section>
+      <p class="section-label">그 투자가 불가능해질 때 · 엔 캐리 청산(Unwinding)</p>
+      <div class="steps-list">
+        <div class="step">
+          <div class="n">1</div>
+          <div><h4>일본이 금리를 올린다</h4><p>빌린 값이 비싸진다. <b>먹던 금리 차가 줄어든다.</b></p></div>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <div><h4>엔화가 강해진다</h4><p>갚아야 할 엔화가 비싸진다. <b>환차익이 환차손으로 뒤집힌다.</b></p></div>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <div><h4>해외 자산을 판다</h4><p>엔화를 갚으려면 <b>달러 자산을 팔아 엔화를 사야</b> 한다.</p></div>
+        </div>
+        <div class="step">
+          <div class="n">4</div>
+          <div><h4>엔화가 더 강해진다 → 다시 1번</h4><p>모두가 같은 방향으로 동시에 움직인다. <b>되먹임 고리</b>가 돈다.</p></div>
+        </div>
+      </div>
+      <p class="warn red">🔁 <b>SVB와 구조가 똑같다.</b> 평가손실이 나서 망한 게 아니라, <b>팔아야만 하는 상황</b>이 와서 망했다. 캐리 청산도 “팔고 싶어서”가 아니라 <b>“갚아야 해서”</b> 파는 매도다.</p>
+    </section>
+
+    <!-- 12. 2024년 8월 -->
+    <section>
+      <p class="section-label">자산시장은 어떻게 됐나 · 2024년 8월 5일</p>
+      <div class="tl">
+        <div class="ev"><div class="d">2024. 7. 31</div><div class="t">일본은행(BOJ)이 기준금리를 <b>0.25%로 인상</b>. 동시에 미국은 금리 인하가 임박했다는 신호 → <b>금리 차가 양쪽에서 좁혀진다</b></div></div>
+        <div class="ev"><div class="d">7월 초 → 8월 초</div><div class="t">엔/달러 <b>161엔대 → 141~142엔대</b>. 한 달 만에 엔화가 10% 넘게 강해진다</div></div>
+        <div class="ev"><div class="d">8. 1 ~ 8. 2</div><div class="t">미국 <b>고용지표 쇼크</b>가 겹친다. 침체 우려 + 캐리 청산이 동시에 터진다</div></div>
+        <div class="ev"><div class="d">8월 5일 (월)</div><div class="t"><b>글로벌 동반 급락</b> — 아시아부터 미국까지 하루 만에</div></div>
+      </div>
+      <div class="rate two" style="margin-top:14px">
+        <div class="row h"><div>2024년 8월 5일</div><div>하루 등락</div></div>
+        <div class="row mark"><div><b>일본 닛케이225</b></div><div class="real">−12.4%</div></div>
+        <div class="row"><div>한국 코스피</div><div class="real">−8.8%</div></div>
+        <div class="row"><div>한국 코스닥</div><div class="real">−11.3%</div></div>
+        <div class="row"><div>미국 나스닥</div><div class="real">−3.4%</div></div>
+        <div class="row"><div>공포지수 VIX</div><div class="real">장중 60 돌파</div></div>
+      </div>
+      <p class="warn">📌 닛케이는 <b>1987년 블랙 먼데이 이후 최대 낙폭</b>이었고, 한국은 <b>사이드카·서킷브레이커</b>가 함께 발동됐다. 한국·대만 증시가 특히 크게 맞은 이유는 <b>엔 캐리로 들어온 외국인 자금 비중이 컸기 때문</b>이다.</p>
+      <div class="duo" style="margin-top:12px">
+        <div class="nb loss">
+          <h4>팔리는 것</h4>
+          <div class="cap">캐리로 사뒀던 모든 것</div>
+          <p class="say">주식·신흥국 통화·고위험 채권·암호화폐까지 <b>한꺼번에</b>. 좋고 나쁨과 무관하게 팔린다.</p>
+        </div>
+        <div class="nb cool">
+          <h4>사지는 것</h4>
+          <div class="cap">갚아야 할 것</div>
+          <p class="say"><b>엔화</b>와 안전자산. 그래서 위기에 엔화가 강해진다.</p>
+        </div>
+      </div>
+      <p class="warn red">💡 <b>“상관없던 자산이 갑자기 같이 떨어지는” 이유가 여기 있다.</b> 분산은 평소엔 작동하지만, 같은 돈줄에서 나온 자산들은 청산 국면에서 <b>한 몸처럼</b> 움직인다. 이때는 낙폭이 아니라 <b>얼마나 빚으로 샀나</b>가 순서를 정한다.</p>
+      <p class="warn">📉 2008년에도 같은 일이 있었다. 금융위기로 캐리가 대규모 청산되며 엔/달러가 <b>110엔대에서 2011년 75엔대까지</b> 밀렸다 — 정작 <b>일본이 잘해서가 아니라, 다들 엔화를 갚아야 해서</b> 벌어진 강세였다.</p>
+    </section>
+
+    <div class="chapter"><span>PART 3 · 금리 커브와 실전</span></div>
+
+    <!-- 13. 두 개의 위험 -->
+    <section>
+      <p class="section-label">정리 · 채권에는 서로 다른 위험이 두 개 있다</p>
+      <div class="duo">
+        <div class="nb grow">
+          <h4>신용위험</h4>
+          <div class="cap">빌려간 쪽이 안 갚을 위험</div>
+          <p class="say">발행자가 망하면 원금을 못 받는다.<br>미국 국채 → <b>세계 최고 수준으로 안전</b></p>
+        </div>
+        <div class="nb loss">
+          <h4>금리 변동 위험</h4>
+          <div class="cap">중간에 가격이 흔들릴 위험</div>
+          <p class="say">만기 전에 팔아야 하면 손해를 본다.<br>미국 국채 → <b>하나도 막아주지 않는다</b></p>
+        </div>
+      </div>
+      <p class="warn">✅ SVB가 산 건 <b>안전한 채권이 맞았다</b>. 안 안전했던 건 그 은행의 <b>버티는 힘</b>이었다.</p>
+    </section>
+
+    <!-- 14. 금리 커브 -->
+    <section>
+      <p class="section-label">금리 커브 · 오래 빌려줄수록 이자를 많이 받는다</p>
+      <div class="lead">
+        <p class="big">다 아는 감각에 <b>이름만 붙인 것</b></p>
+        <p>옆자리 분에게 100만 원을 빌려준다면 — 한 달 뒤에 받는 것과 20년 뒤에 받는 것, 어느 쪽에 이자를 더 받고 싶은가? 20년 동안 무슨 일이 생길지 모른다. <b>그 불확실한 시간을 대신 버텨주는 값이 금리</b>다.</p>
+      </div>
+      <div class="duo" style="margin-top:12px">
+        <div class="nb cool">
+          <h4>플래트닝</h4>
+          <div class="cap">Flattening · 커브가 눕는다</div>
+          <p class="say">장단기 금리차가 <b>좁아진다</b>. 짧게 빌려 길게 굴리는 전략은 <b>남는 게 없어진다</b>.</p>
+        </div>
+        <div class="nb warm">
+          <h4>스티프닝</h4>
+          <div class="cap">Steepening · 커브가 선다</div>
+          <p class="say">장단기 금리차가 <b>벌어진다</b>. 예대마진이 커진다. <b>SVB가 긴 채권을 산 이유</b>도 여기 있다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. 불베어 4분면 -->
+    <section>
+      <p class="section-label">누가 움직였나 · 경우의 수는 네 가지가 전부</p>
+      <div class="quad">
+        <div class="q bull">
+          <span class="tag">불 스티프닝</span>
+          <h4>단기가 내려간다</h4>
+          <p>곧 금리를 내릴 거라고 시장이 먼저 반영</p>
+        </div>
+        <div class="q bear">
+          <span class="tag">베어 스티프닝</span>
+          <h4>장기가 올라간다</h4>
+          <p>물가가 오르거나 나라 빚이 걱정될 때</p>
+        </div>
+        <div class="q bear">
+          <span class="tag">베어 플래트닝</span>
+          <h4>단기가 올라간다</h4>
+          <p>중앙은행이 기준금리를 올릴 때</p>
+        </div>
+        <div class="q bull">
+          <span class="tag">불 플래트닝</span>
+          <h4>장기가 내려간다</h4>
+          <p>앞으로 경기가 식을 거라고 볼 때</p>
+        </div>
+      </div>
+      <p class="warn">🐂🐻 <b>불(bull)은 금리가 내려가는 쪽, 베어(bear)는 올라가는 쪽.</b> 채권은 금리가 내려야 가격이 오르니까 — 오늘의 한 문장이 여기서도 그대로 쓰인다.</p>
+    </section>
+
+    <!-- 16. 금리 역전 -->
+    <section>
+      <p class="section-label">장단기 금리차 · 커브가 뒤집히면 금리 역전</p>
+      <div class="duo">
+        <div class="nb grow">
+          <h4>정상</h4>
+          <div class="cap">단기 &lt; 장기</div>
+          <p class="say">“앞으로는 괜찮겠지”</p>
+        </div>
+        <div class="nb loss">
+          <h4>역전</h4>
+          <div class="cap">단기 &gt; 장기</div>
+          <p class="say">“몇 년 뒤엔 식겠지”</p>
+        </div>
+      </div>
+      <p class="warn" style="margin-top:12px">🔍 <b>왜 뒤집히나</b> — 중앙은행이 왼쪽(기준금리)을 확 올리는데, 오른쪽은 시장이 정한다. 시장이 <b>“경기가 그 정도는 아닌데”</b> 하고 안 따라 올라가면 왼쪽이 더 높아진다. 플래트닝이 끝까지 간 상태다.</p>
+      <div class="rate two" style="margin-top:12px">
+        <div class="row h"><div>미국 10년 − 2년 역전</div><div>기록</div></div>
+        <div class="row"><div>역전 기간</div><div class="real">2022.7 ~ 2024.9</div></div>
+        <div class="row"><div>최대 역전 폭</div><div class="real">약 −1.88%p</div></div>
+        <div class="row mark"><div>그 기간 경기침체</div><div class="real">오지 않았다</div></div>
+      </div>
+      <p class="warn red">⚠️ <b>역전은 온도계지 예언이 아니다.</b> 시장이 지금 무슨 생각을 하는지 보여줄 뿐, 미래를 맞히는 게 아니다. <b>이걸 예언으로 파는 사람은 조심해야 한다.</b></p>
+    </section>
+
+    <!-- 17. 듀레이션 -->
+    <section>
+      <p class="section-label">듀레이션 · 얼마나 예민한 채권인가</p>
+      <div class="lead">
+        <p class="big">듀레이션 = <b>금리가 1% 움직일 때<br>가격이 몇 % 움직이나</b></p>
+        <p>듀레이션 3 → 금리 +1%면 가격 약 <b>−3%</b> · 듀레이션 8 → 금리 +1%면 가격 약 <b>−8%</b></p>
+      </div>
+      <div class="duo" style="margin-top:12px">
+        <div class="nb grow">
+          <h4>매년 이자를 받는 5년 채권</h4>
+          <div class="cap">듀레이션 약 4.5년</div>
+          <p class="say">돈이 미리 돌아오니 실제 묶인 기간이 짧다 → <b>덜 흔들린다</b></p>
+        </div>
+        <div class="nb loss">
+          <h4>만기에 몰아 받는 5년 채권</h4>
+          <div class="cap">듀레이션 5년</div>
+          <p class="say">끝까지 묶여 있다 → <b>더 흔들린다</b></p>
+        </div>
+      </div>
+      <p class="warn">🗣️ 채권 하는 사람들은 만기를 안 물어보고 <b>“듀레이션 몇이야?”</b>라고 묻는다.</p>
+    </section>
+
+    <!-- 18. 실제로 살 때 -->
+    <section>
+      <p class="section-label">실제로 살 때 · 인쇄된 금리와 내가 버는 금리는 다르다</p>
+      <div class="duo">
+        <div class="nb loss">
+          <h4>쿠폰 7%인데</h4>
+          <div class="cap">비싸게 샀다면</div>
+          <p class="say">내 수익률 <b>2%</b></p>
+        </div>
+        <div class="nb grow">
+          <h4>쿠폰 2%인데</h4>
+          <div class="cap">싸게 샀다면</div>
+          <p class="say">내 수익률 <b>4%</b></p>
+        </div>
+      </div>
+      <p class="warn" style="margin-top:12px">💰 <b>“연 7% 고금리 채권!” → 그래서 얼마에 사셨어요?</b><br>세금은 <b>쿠폰 이자에만</b> 붙고, 가격이 올라서 번 돈(<b>매매차익</b>)에는 안 붙는다. 그래서 부자들은 <b>쿠폰이 낮고 싼 채권</b>을 찾는다 — 같은 수익률인데 세금은 절반. 이걸 <b>절세채권</b>이라 부른다.</p>
+      <p class="warn red">⚠️ 다만 개인이 살 수 있는 건 사실상 <b>국채·통안채</b> 정도다. 회사채는 사고팔 사람이 적고, <b>수수료는 금리에 녹아 있어 보이지 않는다</b>.</p>
+    </section>
+
+    <!-- 19. 그래서 -->
+    <section>
+      <p class="section-label">그래서 · 금리는 돈의 값이다</p>
+      <div class="steps-list">
+        <div class="step">
+          <div class="n">1</div>
+          <div><h4>금리는 모든 자산의 기준점이다</h4><p>안전한 데서 5%가 나오면, 위험한 주식은 <b>그보다 훨씬 더</b> 줘야 한다.</p></div>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <div><h4>먼 미래의 이익으로 평가받는 기업일수록 크게 흔들린다</h4><p><b>할인 개념이 주식에도 똑같이</b> 적용되기 때문이다.</p></div>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <div><h4>금리 커브에는 시장 전체의 생각이 녹아 있다</h4><p>주가지수만 봐서는 보이지 않는 것이다.</p></div>
+        </div>
+        <div class="step">
+          <div class="n">4</div>
+          <div><h4>남의 미스매치가 내 계좌를 흔든다</h4><p>내가 빚을 안 썼어도, <b>빚으로 산 사람들이 갚아야 하면</b> 내 주식도 같이 팔린다.</p></div>
+        </div>
+      </div>
+      <p class="warn">🎯 4회차의 <b>“깨지지 않는다”</b>가 오늘 이야기의 목적지였다.</p>
+    </section>
+
+    <!-- 20. 오늘의 질문 -->
+    <section>
+      <p class="section-label">복습 질문 · 소리 내어 답하기</p>
+      <div class="ask">
+        <h4>① 금리가 오르면 채권 가격이 왜 내려가나</h4>
+        <p>힌트 — <b>백화점 세일</b>. 정가는 안 변하고 할인율만 변한다.</p>
+      </div>
+      <div class="ask">
+        <h4>② SVB는 안전한 국채를 샀는데 왜 망했나</h4>
+        <p>힌트 — <b>만기 미스매치</b>. 신용위험은 0이었지만 금리 변동 위험은 그대로였다.</p>
+      </div>
+      <div class="ask">
+        <h4>③ 엔 캐리 청산이 왜 내 코스피 계좌를 때리나</h4>
+        <p>힌트 — <b>통화 미스매치</b>. 엔화를 갚으려면 들고 있던 자산을 <b>가리지 않고</b> 팔아야 한다.</p>
+      </div>
+      <div class="ask">
+        <h4>④ 장단기 금리 역전은 침체의 신호인가</h4>
+        <p>힌트 — <b>온도계지 예언이 아니다</b>. 2022~2024년 역대 최장 역전에도 침체는 오지 않았다.</p>
+      </div>
+    </section>
+
+    <section class="takeaway">
+      <p class="section-label">한 문장 정리</p>
+      <p>채권은 <span class="hl">미래가 고정된 종이</span>,<br>금리는 그걸 <span class="hl2">지금 얼마에 살지 정하는 할인율</span>.<br>그래서 금리가 오르면 채권 가격은 내려간다.<br><br>그리고 금융사고는 <span class="hl2">가격이 떨어져서</span>가 아니라<br><span class="hl">팔아야만 할 때</span> 일어난다.</p>
+    </section>
+
+  </div>
+</div>
