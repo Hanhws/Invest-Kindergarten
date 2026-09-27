@@ -218,98 +218,51 @@
     .card { border: none; box-shadow: none; max-width: none; }
     .body > section { break-inside: avoid; }
   }
+
+  /* ── Punchy teaser ── */
+  .teaser { display: flex; flex-direction: column; gap: 14px; }
+  .teaser .session-tag { margin: 0; }
+  .teaser h2 {
+    margin: 0;
+    font-size: clamp(28px, 7vw, 40px);
+    font-weight: 900;
+    letter-spacing: -.03em;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+  .teaser .hook {
+    margin: 0;
+    font-size: clamp(17px, 4.2vw, 21px);
+    font-weight: 800;
+    line-height: 1.45;
+    padding: 16px 20px;
+    border-radius: 12px;
+    background: var(--red-soft);
+    color: var(--red);
+  }
+  .divider { height: 1px; background: var(--line); }
 </style>
 
 <div class="card">
   <header class="head">
     <p class="eyebrow">주식 유치원 · 다음 시간 예고</p>
-    <h1>7·8회차, <br>이런 걸 배워요</h1>
-    <p class="goal">🎯 <b>미리보기</b> — 지난 시간에 배운 금리를 이제 실전에서 써먹어 보고, 많이들 궁금해하셨던 일본의 잃어버린 30년 이야기까지.</p>
+    <h1>7·8회차 예고</h1>
   </header>
 
   <div class="body">
 
-    <!-- 7회차 -->
-    <section class="session">
-      <p class="session-tag"><span class="chip">7회차</span> 금리를 봐서 어디다 써?</p>
-      <ol class="agenda">
-        <li class="topic">
-          <span class="num">01</span>
-          <div class="t-body">
-            <h3>금리가 움직이면 주식은?</h3>
-            <p>금리가 오르면 왜 주가가 흔들릴까 — 돈의 값이 바뀌면 달라지는 것들</p>
-          </div>
-        </li>
-        <li class="topic">
-          <span class="num">02</span>
-          <div class="t-body">
-            <h3>금리에 민감한 주식, 덜 민감한 주식</h3>
-            <p>성장주 vs 가치주, 은행·부동산 — 금리 따라 웃고 우는 업종들</p>
-          </div>
-        </li>
-        <li class="topic">
-          <span class="num">03</span>
-          <div class="t-body">
-            <h3>금리 뉴스 읽는 법</h3>
-            <p>한국은행 금통위, 미국 FOMC — 기준금리 발표를 내 투자에 연결하기</p>
-          </div>
-        </li>
-      </ol>
-      <div class="prep">
-        <p class="prep-label">🔎 찾아보기</p>
-        <ul>
-          <li>지금 <b>한국</b>과 <b>미국</b>의 기준금리는 각각 몇 %일까?</li>
-          <li>최근 금리가 <b>올랐는지, 내렸는지</b> 뉴스 한 줄 찾아보기</li>
-        </ul>
-        <p class="note">5·6회차 채권과 금리 내용을 한 번 복습해 오시면 훨씬 쉽게 들을 수 있어요.</p>
-      </div>
+    <section class="teaser">
+      <p class="session-tag"><span class="chip">7회차</span></p>
+      <h2>금리, 어디다 써?</h2>
+      <p class="hook">🔥 지금 당신의 돈은<br>빛의 속도로 녹고 있다.</p>
     </section>
 
-    <!-- 8회차 -->
-    <section class="session">
-      <p class="session-tag"><span class="chip">8회차</span> 여러분이 원하던, 일본의 잃어버린 30년</p>
-      <ol class="agenda">
-        <li class="topic">
-          <span class="num">01</span>
-          <div class="t-body">
-            <h3>버블의 탄생</h3>
-            <p>1980년대 일본 — 도쿄 땅을 팔면 미국을 살 수 있다던 시절</p>
-          </div>
-        </li>
-        <li class="topic">
-          <span class="num">02</span>
-          <div class="t-body">
-            <h3>버블 붕괴, 그리고 잃어버린 30년</h3>
-            <p>1989년 닛케이 고점 이후 — 주가도, 월급도, 물가도 멈춰버린 나라</p>
-          </div>
-        </li>
-        <li class="topic">
-          <span class="num">03</span>
-          <div class="t-body">
-            <h3>일본은 다시 돌아왔을까</h3>
-            <p>34년 만에 고점을 되찾은 닛케이 — 그 사이 무엇이 달라졌나</p>
-          </div>
-        </li>
-        <li class="topic">
-          <span class="num">04</span>
-          <div class="t-body">
-            <h3>우리에게 주는 교훈</h3>
-            <p>한국은 괜찮을까? — 투자자로서 꼭 기억해야 할 것들</p>
-          </div>
-        </li>
-      </ol>
-      <div class="prep">
-        <p class="prep-label">📈 미리 보고 오기</p>
-        <ul>
-          <li><b>닛케이225 지수</b> 차트를 1989년부터 지금까지 한 번 보기</li>
-        </ul>
-        <p class="note">30년 동안 제자리였던 차트를 직접 보고 오시면 이야기가 훨씬 와닿을 거예요.</p>
-      </div>
-    </section>
+    <div class="divider"></div>
 
-    <section class="takeaway">
-      <p class="section-label">한 문장 정리</p>
-      <p><span class="hl">금리</span>를 읽어 투자에 써먹고,<br>금리가 한 나라의 <span class="hl">30년</span>을 어떻게 바꿨는지 본다.</p>
+    <section class="teaser">
+      <p class="session-tag" style="color:var(--grow)"><span class="chip" style="background:var(--grow-soft);color:var(--grow)">8회차</span></p>
+      <h2>일본, 잃어버린 30년</h2>
+      <p class="hook">🇯🇵 30년 동안 멈춘 나라.<br>우리도?</p>
     </section>
 
   </div>
