@@ -1,0 +1,516 @@
+<title>주식 유치원 · 8회차 공부카드</title>
+<style>
+  :root {
+    --paper: #f7f4ec;
+    --card: #ffffff;
+    --ink: #232019;
+    --ink-soft: #6b6459;
+    --line: #e7e0d3;
+    --grow: #1f8a5b;
+    --grow-soft: #e6f2ea;
+    --gold: #c98a2b;
+    --gold-soft: #f6ecda;
+    --up: #d43b34;
+    --up-soft: #f8e4e2;
+    --down: #2f6fd0;
+    --down-soft: #e2ebf8;
+    --shadow: 24px 32px 60px -32px rgba(40, 34, 22, .35);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #16140f; --card: #201d17; --ink: #f2ece0; --ink-soft: #a89f8f;
+      --line: #322d24; --grow: #47c98a; --grow-soft: #16281f; --gold: #e0a94a;
+      --gold-soft: #2a2114;
+      --up: #f0665f; --up-soft: #2e1917; --down: #6ba0ea; --down-soft: #161f2e;
+      --shadow: 24px 32px 60px -30px rgba(0, 0, 0, .6);
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #f7f4ec; --card: #ffffff; --ink: #232019; --ink-soft: #6b6459;
+    --line: #e7e0d3; --grow: #1f8a5b; --grow-soft: #e6f2ea; --gold: #c98a2b;
+    --gold-soft: #f6ecda;
+    --up: #d43b34; --up-soft: #f8e4e2; --down: #2f6fd0; --down-soft: #e2ebf8;
+    --shadow: 24px 32px 60px -32px rgba(40, 34, 22, .35);
+  }
+  :root[data-theme="dark"] {
+    --paper: #16140f; --card: #201d17; --ink: #f2ece0; --ink-soft: #a89f8f;
+    --line: #322d24; --grow: #47c98a; --grow-soft: #16281f; --gold: #e0a94a;
+    --gold-soft: #2a2114;
+    --up: #f0665f; --up-soft: #2e1917; --down: #6ba0ea; --down-soft: #161f2e;
+    --shadow: 24px 32px 60px -30px rgba(0, 0, 0, .6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: clamp(16px, 4vw, 56px);
+  }
+
+  .card {
+    width: 100%;
+    max-width: 620px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .head {
+    padding: clamp(28px, 5vw, 40px) clamp(24px, 5vw, 44px) clamp(24px, 4vw, 32px);
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--grow);
+    text-transform: uppercase;
+    margin: 0 0 14px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px; height: 2px;
+    background: var(--grow);
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    text-wrap: balance;
+  }
+  .goal {
+    margin: 16px 0 0;
+    padding: 14px 18px;
+    background: var(--grow-soft);
+    border-radius: 12px;
+    font-size: clamp(15px, 3.4vw, 17px);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .goal b { color: var(--grow); }
+
+  /* ── Body ── */
+  .body {
+    padding: clamp(22px, 4vw, 36px) clamp(24px, 5vw, 44px) clamp(28px, 5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+
+  /* 핵심 문장 박스 */
+  .lead {
+    border: 1px solid var(--gold);
+    background: var(--gold-soft);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .lead p { margin: 0; font-size: 14.5px; }
+  .lead p + p { margin-top: 8px; }
+  .lead .big {
+    font-size: clamp(17px, 4vw, 20px);
+    font-weight: 800;
+    line-height: 1.45;
+    text-wrap: balance;
+  }
+  .lead .big b { color: var(--gold); }
+  .lead .src {
+    margin-top: 10px; padding-top: 9px;
+    border-top: 1px dashed var(--gold);
+    font-size: 12.5px; color: var(--ink-soft);
+  }
+  .lead .src b { color: var(--ink); }
+
+  /* 구매력 막대 */
+  .melt .ghost { fill: none; stroke: var(--line); stroke-width: 1.4; stroke-dasharray: 4 4; }
+  .melt .bar   { fill: var(--gold); }
+  .melt .base  { stroke: var(--line); stroke-width: 2; }
+  .melt .v { font: 800 12px "Apple SD Gothic Neo", system-ui, sans-serif; fill: var(--ink); }
+  .melt .x { font: 600 11px "Apple SD Gothic Neo", system-ui, sans-serif; fill: var(--ink-soft); }
+  .melt .loss { font: 700 11px "Apple SD Gothic Neo", system-ui, sans-serif; fill: var(--up); }
+
+  /* 실질수익률 표 */
+  .rate {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .rate .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.25fr;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px;
+  }
+  .rate .row:first-child { border-top: none; }
+  .rate .row.h {
+    background: var(--paper);
+    font-size: 11.5px; font-weight: 700;
+    letter-spacing: .04em; color: var(--ink-soft);
+  }
+  .rate .row b { font-weight: 800; }
+  .rate .row .real { font-weight: 800; }
+  .rate .neg .real { color: var(--up); }
+  .rate .zero .real { color: var(--ink-soft); }
+  .rate .pos .real { color: var(--grow); }
+  .rate .row .note { color: var(--ink-soft); font-size: 12.5px; }
+  .rate .row.mark { background: var(--grow-soft); }
+  .rate .row.mark .note { color: var(--ink); font-weight: 700; }
+
+  /* 성적표 계산 */
+  .calc {
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--up);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .calc h4 { margin: 0 0 8px; font-size: 14px; font-weight: 800; color: var(--up); }
+  .calc p { margin: 0; font-size: 13.5px; }
+  .calc .steps {
+    margin-top: 12px;
+    background: var(--paper);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+  .calc .steps .l { color: var(--ink-soft); }
+  .calc .steps .r { float: right; font-weight: 800; }
+  .calc .steps .hr {
+    border-top: 1px dashed var(--line);
+    margin: 6px 0;
+  }
+  .calc .steps .fin { color: var(--up); }
+  .calc .after { margin-top: 10px; font-size: 12.5px; color: var(--ink-soft); }
+  .calc .after b { color: var(--ink); }
+
+  /* 2열 숫자 표 */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .nb {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .nb.grow { border-color: var(--grow); background: var(--grow-soft); }
+  .nb.loss { border-color: var(--up);   background: var(--up-soft); }
+  .nb h4 { margin: 0 0 4px; font-size: 14.5px; font-weight: 800; }
+  .nb.grow h4 { color: var(--grow); }
+  .nb.loss h4 { color: var(--up); }
+  .nb .cap { font-size: 11.5px; color: var(--ink-soft); }
+  .nb ul { margin: 10px 0 0; padding: 0; list-style: none; }
+  .nb li {
+    display: flex; justify-content: space-between; gap: 10px;
+    font-size: 13px; padding: 6px 0;
+    border-top: 1px dashed var(--line);
+  }
+  .nb li:first-child { border-top: none; }
+  .nb li span { color: var(--ink-soft); }
+  .nb li b { font-weight: 800; }
+  .nb .say { margin: 10px 0 0; font-size: 12.5px; color: var(--ink); }
+  .nb.grow .say b { color: var(--grow); }
+  .nb.loss .say b { color: var(--up); }
+
+  /* 오늘의 질문 */
+  .ask {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .ask + .ask { margin-top: 12px; }
+  .ask h4 { margin: 0 0 10px; font-size: 14.5px; font-weight: 800; color: var(--grow); }
+  .ask .opts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ask .opt {
+    font-size: 12px; font-weight: 700;
+    padding: 5px 11px; border-radius: 999px;
+    background: var(--paper); border: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .ask .opt em { font-style: normal; color: var(--ink-soft); font-weight: 600; }
+  .ask p { margin: 10px 0 0; font-size: 12.5px; color: var(--ink-soft); }
+  .ask p b { color: var(--ink); }
+
+  .warn {
+    margin-top: 12px;
+    background: var(--gold-soft);
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    color: var(--ink);
+  }
+  .warn b { color: var(--gold); }
+
+  /* Takeaway */
+  .takeaway {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 14px;
+    padding: 22px 24px;
+    text-align: center;
+  }
+  .takeaway .section-label { color: rgba(255,255,255,.55); margin-bottom: 8px; }
+  .takeaway p {
+    margin: 0;
+    font-size: clamp(16px, 3.8vw, 19px);
+    font-weight: 700;
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+  .takeaway .hl { color: var(--grow); }
+  .takeaway .hl2 { color: var(--gold); }
+
+  @media (max-width: 460px) {
+    .duo { grid-template-columns: 1fr; }
+    .rate .row { grid-template-columns: 1fr 1fr; }
+    .rate .row .note { grid-column: 1 / -1; }
+  }
+
+  @media print {
+    body { padding: 0; background: var(--card); }
+    .card { border: none; box-shadow: none; max-width: none; }
+    .body > section { break-inside: avoid; }
+  }
+
+  /* 번호 목록 */
+  .why { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .why li { display: flex; gap: 14px; padding: 14px 16px; border-top: 1px solid var(--line); }
+  .why li:first-child { border-top: none; }
+  .why .n {
+    flex: none; width: 30px; height: 30px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800; background: var(--up-soft); color: var(--up);
+  }
+  .why.fix .n { background: var(--grow-soft); color: var(--grow); }
+  .why h4 { margin: 0; font-size: 14.5px; font-weight: 800; }
+  .why p { margin: 2px 0 0; font-size: 13px; color: var(--ink-soft); }
+  .why p b { color: var(--ink); }
+
+  /* 댐 흐름 */
+  .flow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .flow .f { border-radius: 12px; padding: 14px 16px; font-size: 13px; }
+  .flow .f h4 { margin: 0 0 6px; font-size: 14.5px; font-weight: 800; }
+  .flow .open { background: var(--grow-soft); border: 1px solid var(--grow); }
+  .flow .open h4 { color: var(--grow); }
+  .flow .shut { background: var(--up-soft); border: 1px solid var(--up); }
+  .flow .shut h4 { color: var(--up); }
+  .flow .f p { margin: 0; line-height: 1.8; }
+  @media (max-width: 460px) { .flow { grid-template-columns: 1fr; } }
+
+  /* 몇 배가 됐나 막대 */
+  .bars { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .bars .b { display: grid; grid-template-columns: 92px 1fr 52px; align-items: center; gap: 10px; font-size: 13px; padding: 5px 0; }
+  .bars .b span { color: var(--ink-soft); }
+  .bars .b i { display: block; height: 14px; border-radius: 4px; background: var(--line); }
+  .bars .b.hot i { background: var(--up); }
+  .bars .b b { font-weight: 800; text-align: right; }
+  .bars .b.hot b { color: var(--up); }
+  .bars .cap { margin: 10px 0 0; padding-top: 10px; border-top: 1px dashed var(--line); font-size: 12.5px; color: var(--ink-soft); }
+  .bars .cap b { color: var(--ink); }
+  .nb.plain h4 { color: var(--ink); }
+  .calc .steps .ok { color: var(--grow); }
+</style>
+<div class="card">
+  <header class="head">
+    <p class="eyebrow">주식 유치원 · 8회차</p>
+    <h1>일본,<br>잃어버린 30년</h1>
+    <p class="goal">🎯 <b>수업 목표</b> — 일본이 <b>싼 돈으로 거품을 만들고, 수문을 닫아 터뜨린</b> 과정을 금리로 설명하고, 일본 여행이 싸진 이유를 <b>두 나라 금리 차이(환율)</b>로 말할 수 있다.</p>
+  </header>
+
+  <div class="body">
+
+    <!-- 1. 멈춘 가격표 -->
+    <section>
+      <p class="section-label">출발점 · 일본 여행, 왜 싸졌을까</p>
+      <div class="lead">
+        <p class="big">일본은 할인 행사를 한 게 아니다.<br><b>30년 동안 가만히 있었을 뿐</b>이다.</p>
+        <p>30년 전 일본은 “비싸서 못 가는 나라”였다. 그 사이 다른 나라의 물가와 월급은 올랐고, 일본만 제자리에 멈춰 있었다. 이걸 <b>잃어버린 30년</b>이라고 부른다.</p>
+      </div>
+    </section>
+
+    <section>
+      <p class="section-label">30년 동안 멈춘 가격표</p>
+      <div class="duo">
+        <div class="nb plain">
+          <h4>물가</h4>
+          <div class="cap">1990년 → 최근</div>
+          <ul>
+            <li><span>일본 빅맥</span><b>300엔대 후반 → 390엔</b></li>
+            <li><span>서울 짜장면</span><b>1,300원 → 7,500원</b></li>
+          </ul>
+          <p class="say">빅맥은 2021년 값, 짜장면은 2025년 값.</p>
+        </div>
+        <div class="nb plain">
+          <h4>평균 임금 30년 상승률</h4>
+          <div class="cap">물가 반영 · 구매력 기준 (OECD)</div>
+          <ul>
+            <li><span>한국</span><b>약 +90%</b></li>
+            <li><span>미국</span><b>+48%</b></li>
+            <li><span>OECD 평균</span><b>+33%</b></li>
+            <li><span>일본</span><b style="color:var(--up)">+4.4%</b></li>
+          </ul>
+        </div>
+      </div>
+      <p class="warn">💡 2010년대 중반, <b>한국 평균 임금이 일본을 추월</b>했다(구매력 기준). 환율 효과를 뺀 숫자다 — 엔화 때문만이 아니라 진짜로 안 오른 것.</p>
+    </section>
+
+    <!-- 2. 1989 -->
+    <section>
+      <p class="section-label">1989년 · 세계에서 제일 잘나가던 나라</p>
+      <ol class="why fix">
+        <li><span class="n">1</span><div><h4>세계 시가총액 Top 20 중 14개가 일본 회사</h4><p>1위 NTT, 2~5위 일본 은행. <b>2026년 Top 20 안의 일본 회사는 0개.</b></p></div></li>
+        <li><span class="n">2</span><div><h4>도쿄 황궁 땅 &gt; 캘리포니아 전체</h4><p>일본 전체 땅값이 <b>미국 전체의 4배</b>. 면적은 미국의 25분의 1인데도.</p></div></li>
+        <li><span class="n">3</span><div><h4>일본이 미국을 사들이다</h4><p>미쓰비시가 록펠러센터를, 소니가 컬럼비아 영화사를 샀다. 다들 말했다 — <b>“이번엔 다르다.”</b></p></div></li>
+      </ol>
+    </section>
+
+    <!-- 3. 수문 -->
+    <section>
+      <p class="section-label">거품은 금리가 만들고, 금리가 터뜨렸다</p>
+      <div class="flow">
+        <div class="f open">
+          <h4>🔓 수문을 활짝 · 1987년</h4>
+          <p>금리 5.0% → <b>2.5%</b>, 2년 3개월 유지<br>싼 돈으로 땅을 산다<br>→ 땅값이 오른다<br>→ 은행: “담보 올랐네, 더 빌려줄게”<br>→ <b>또 땅을 산다</b></p>
+        </div>
+        <div class="f shut">
+          <h4>🔒 수문을 쾅 · 1989~90년</h4>
+          <p>금리 2.5% → <b>6.0%</b>, 대출 총량 규제<br>새로 사는 사람이 없다<br>→ 땅값이 떨어진다<br>→ 은행: “돈 갚으세요”<br>→ <b>갚으려고 또 판다</b></p>
+        </div>
+      </div>
+      <p class="warn">⚙️ <b>빚으로 굴리는 바퀴 = 레버리지(3회차).</b> 올라갈 때 빨랐던 바퀴는 내려올 때도 빠르다. 시작은 1985년 <b>플라자 합의</b>(1달러 240엔 → 120엔대, 엔화 값 2배 → 수출이 막힌 ‘엔고 불황’)였지만, 거품을 키운 건 그다음에 <b>돈을 너무 오래 싸게 푼 것</b>이다.</p>
+    </section>
+
+    <!-- 4. 거품의 크기 -->
+    <section>
+      <p class="section-label">경제는 걸었고, 가격은 뛰었다 · 1985 → 1990</p>
+      <div class="bars">
+        <div class="b"><span>경제 규모</span><i style="width:45%"></i><b>1.35배</b></div>
+        <div class="b hot"><span>도시 땅값</span><i style="width:83%"></i><b>2.5배</b></div>
+        <div class="b hot"><span>주가</span><i style="width:100%"></i><b>3배</b></div>
+        <p class="cap">이 간격이 <b>거품</b>이다. 1989년 말 일본 증시 <b>PER 61배</b> — 번 돈으로 회사값을 뽑는 데 61년. 보통 시장은 15배 안팎이다. (PER = 시가총액 ÷ 순이익, 1회차)</p>
+      </div>
+    </section>
+
+    <!-- 5. 34년 -->
+    <section>
+      <p class="section-label">1989년 마지막 날 산 사람의 본전까지</p>
+      <div class="calc">
+        <h4>닛케이 225 — “몇 년 걸렸을까?”</h4>
+        <p>세계 1등 나라의, 세계 1등 회사들을 샀다. 다만 비싸게, 빚내서 샀다.</p>
+        <div class="steps">
+          <div><span class="l">1989.12.29 고점</span><span class="r">38,916</span></div>
+          <div><span class="l">2009.3.10 바닥</span><span class="r fin">7,055 (−82%)</span></div>
+          <div><span class="l">본전까지 필요한 수익률</span><span class="r fin">+452% (5.5배)</span></div>
+          <div class="hr"></div>
+          <div><span class="l">2024.2.22 고점 회복</span><span class="r ok">34년 2개월</span></div>
+        </div>
+        <p class="after">→ 4회차에서 −50%면 +100%가 필요했다. <b>−82%면 5.5배를 벌어야 본전</b>이다. (배당을 뺀 지수 기준. 배당을 넣어도 수십 년이다.)</p>
+      </div>
+    </section>
+
+    <!-- 6. 환율 -->
+    <section>
+      <p class="section-label">엔화는 왜 싸졌나 · 금리와 환율</p>
+      <div class="lead">
+        <p class="big"><b>금리가 높은 나라의 돈이 비싸다.</b><br>환율은 두 나라 돈값의 비교다.</p>
+        <p>넣기만 해도 5%를 주는 나라의 돈은 다들 갖고 싶어 한다. 사려는 사람이 많으니 그 돈이 비싸진다. 환율 이론은 많지만 제일 기본은 <b>두 나라 금리 차이</b>다.</p>
+      </div>
+      <div class="rate" style="margin-top:12px">
+        <div class="row h"><div>나라</div><div>기준금리 (2024년 초)</div><div>돈의 값</div></div>
+        <div class="row pos"><div><b>미국</b></div><div class="real">5%대</div><div class="note">달러 · 가장 강함</div></div>
+        <div class="row zero"><div><b>한국</b></div><div class="real">3.5%</div><div class="note">원화 · 중간</div></div>
+        <div class="row neg"><div><b>일본</b></div><div class="real">0%</div><div class="note">엔화 · 가장 약함</div></div>
+      </div>
+      <p class="warn">💴 <b>100엔 = 몇 원?</b> 2012년 1,492원 → 2020년 1,068원 → 2024년 888원 → 2026년 9월 <b>863원</b>. 10여 년 만에 −42%. 내가 아껴 쓴 게 아니라 <b>엔화가 싸진 것</b>이다.</p>
+    </section>
+
+    <!-- 7. 엔저의 두 얼굴 -->
+    <section>
+      <p class="section-label">엔화가 싸지면, 누가 웃고 누가 우나</p>
+      <div class="duo">
+        <div class="nb grow">
+          <h4>기업 · 증시는 웃는다</h4>
+          <ul>
+            <li><span>일본 차가 해외에서 싸져 잘 팔린다</span></li>
+            <li><span>외국인 눈엔 일본 주식이 세일</span></li>
+            <li><span>“언젠가 금리 올리겠지” 기대로 돈이 몰린다</span></li>
+          </ul>
+          <p class="say">닛케이 신고가 뒤에는 <b>엔저</b>도 있다.</p>
+        </div>
+        <div class="nb loss">
+          <h4>국민은 가난해진다</h4>
+          <ul>
+            <li><span>가만히 있어도 재산이 세계 기준으로 깎인다</span></li>
+            <li><span>수입 물가가 오른다</span></li>
+            <li><span>해외여행이 비싸진다</span></li>
+          </ul>
+          <p class="say"><b>“부자 나라, 가난한 국민”</b></p>
+        </div>
+      </div>
+      <p class="warn">🤔 <b>그럼 금리를 올리면 되잖아?</b> 집값은 떨어지고 월급은 30년째 그대로인 나라에서 금리를 올리면 돈이 전부 은행으로 들어가 멈춘다. 그래서 0% 금리로 계속 돈을 풀었고, 엔화는 더 싸졌다.</p>
+    </section>
+
+    <!-- 8. 캐리 트레이드 -->
+    <section>
+      <p class="section-label">캐리 트레이드 · 0%로 빌려서 5%에 넣는다</p>
+      <ol class="why fix">
+        <li><span class="n">1</span><div><h4>엔화를 빌린다</h4><p>금리 0% — 이자가 거의 없다.</p></div></li>
+        <li><span class="n">2</span><div><h4>들고(carry) 나간다</h4><p>금리 5%를 주는 미국 채권·주식에 넣는다. 값이 떨어지는 <b>일본 건물은 안 산다.</b></p></div></li>
+        <li><span class="n">3</span><div><h4>차이를 먹는다</h4><p>일본은 해외 투자의 왕국이 됐다(‘와타나베 부인’). 해외 이자·배당으로 흑자 — <b>나라가 통째로 건물주.</b></p></div></li>
+      </ol>
+      <div class="calc" style="margin-top:12px">
+        <h4>위기가 오면, 돈은 집으로 돌아온다</h4>
+        <p>위기 때 원화는 떨어지지만 엔화는 오른다. 경제가 강해서가 아니라 <b>돌아올 돈이 많아서</b>다.</p>
+        <div class="steps">
+          <div><span class="l">2024.7.31 일본은행 금리 인상</span><span class="r">0.25%</span></div>
+          <div><span class="l">2024.8.5 닛케이 (하루)</span><span class="r fin">−12.4%</span></div>
+        </div>
+        <p class="after">→ 엔화를 빌려 밖에 투자했던 돈이 한꺼번에 돌아왔다(<b>캐리 청산</b>). 그래서 <b>금리는 소 잡는 칼</b>이다 — 0.25%가 나라 사이 돈의 흐름을 바꾼다.</p>
+      </div>
+    </section>
+
+    <!-- 9. 우리도 0%? -->
+    <section>
+      <p class="section-label">그럼 우리도 0% 하면 안 돼요?</p>
+      <div class="flow">
+        <div class="f open">
+          <h4>0%로 내리면</h4>
+          <p>해외로 나가기 전에<br><b>아파트·코인부터 산다.</b><br>일본은 집값이 떨어지는 나라,<br>한국은 집값 오를까 봐 떠는 나라.</p>
+        </div>
+        <div class="f shut">
+          <h4>10%로 올리면</h4>
+          <p>변동금리 대출자가 쓰러진다.<br>은행이 10%를 주는데<br><b>누가 사업을 하나.</b></p>
+        </div>
+      </div>
+      <p class="warn">⚖️ <b>적정 금리는 아무도 모른다.</b> 미국 금리와 우리 사정을 보면서 조금씩 움직일 뿐이다. 엔화가 싸지면 기업이 웃고 국민이 울고, 비싸지면 그 반대 — 누구 편을 드느냐의 문제다.</p>
+    </section>
+
+    <section class="takeaway">
+      <p class="section-label">한 문장 정리</p>
+      <p>좋은 것도 <span class="hl2">비싸게, 빚내서</span> 사면 <span class="hl2">34년</span> 걸린다.<br>금리는 돈의 값, 환율은 <span class="hl">두 나라 돈값의 비교</span>.<br>일본 여행이 싸다면, <span class="hl">금리 차이</span>를 몸으로 느낀 것이다.</p>
+    </section>
+
+  </div>
+</div>
