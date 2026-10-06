@@ -1,0 +1,596 @@
+<title>주식 유치원 · 9회차 공부카드</title>
+<style>
+  :root {
+    --paper: #f7f4ec;
+    --card: #ffffff;
+    --ink: #232019;
+    --ink-soft: #6b6459;
+    --line: #e7e0d3;
+    --grow: #1f8a5b;
+    --grow-soft: #e6f2ea;
+    --gold: #c98a2b;
+    --gold-soft: #f6ecda;
+    --up: #d43b34;
+    --up-soft: #f8e4e2;
+    --down: #2f6fd0;
+    --down-soft: #e2ebf8;
+    --shadow: 24px 32px 60px -32px rgba(40, 34, 22, .35);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #16140f; --card: #201d17; --ink: #f2ece0; --ink-soft: #a89f8f;
+      --line: #322d24; --grow: #47c98a; --grow-soft: #16281f; --gold: #e0a94a;
+      --gold-soft: #2a2114;
+      --up: #f0665f; --up-soft: #2e1917; --down: #6ba0ea; --down-soft: #161f2e;
+      --shadow: 24px 32px 60px -30px rgba(0, 0, 0, .6);
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #f7f4ec; --card: #ffffff; --ink: #232019; --ink-soft: #6b6459;
+    --line: #e7e0d3; --grow: #1f8a5b; --grow-soft: #e6f2ea; --gold: #c98a2b;
+    --gold-soft: #f6ecda;
+    --up: #d43b34; --up-soft: #f8e4e2; --down: #2f6fd0; --down-soft: #e2ebf8;
+    --shadow: 24px 32px 60px -32px rgba(40, 34, 22, .35);
+  }
+  :root[data-theme="dark"] {
+    --paper: #16140f; --card: #201d17; --ink: #f2ece0; --ink-soft: #a89f8f;
+    --line: #322d24; --grow: #47c98a; --grow-soft: #16281f; --gold: #e0a94a;
+    --gold-soft: #2a2114;
+    --up: #f0665f; --up-soft: #2e1917; --down: #6ba0ea; --down-soft: #161f2e;
+    --shadow: 24px 32px 60px -30px rgba(0, 0, 0, .6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: clamp(16px, 4vw, 56px);
+  }
+
+  .card {
+    width: 100%;
+    max-width: 620px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .head {
+    padding: clamp(28px, 5vw, 40px) clamp(24px, 5vw, 44px) clamp(24px, 4vw, 32px);
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--grow);
+    text-transform: uppercase;
+    margin: 0 0 14px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 26px; height: 2px;
+    background: var(--grow);
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 800;
+    letter-spacing: -.02em;
+    text-wrap: balance;
+  }
+  .goal {
+    margin: 16px 0 0;
+    padding: 14px 18px;
+    background: var(--grow-soft);
+    border-radius: 12px;
+    font-size: clamp(15px, 3.4vw, 17px);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .goal b { color: var(--grow); }
+
+  /* ── Body ── */
+  .body {
+    padding: clamp(22px, 4vw, 36px) clamp(24px, 5vw, 44px) clamp(28px, 5vw, 40px);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+
+  /* 핵심 문장 박스 */
+  .lead {
+    border: 1px solid var(--gold);
+    background: var(--gold-soft);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .lead p { margin: 0; font-size: 14.5px; }
+  .lead p + p { margin-top: 8px; }
+  .lead .big {
+    font-size: clamp(17px, 4vw, 20px);
+    font-weight: 800;
+    line-height: 1.45;
+    text-wrap: balance;
+  }
+  .lead .big b { color: var(--gold); }
+  .lead .src {
+    margin-top: 10px; padding-top: 9px;
+    border-top: 1px dashed var(--gold);
+    font-size: 12.5px; color: var(--ink-soft);
+  }
+  .lead .src b { color: var(--ink); }
+
+  /* 구매력 막대 */
+  .melt .ghost { fill: none; stroke: var(--line); stroke-width: 1.4; stroke-dasharray: 4 4; }
+  .melt .bar   { fill: var(--gold); }
+  .melt .base  { stroke: var(--line); stroke-width: 2; }
+  .melt .v { font: 800 12px "Apple SD Gothic Neo", system-ui, sans-serif; fill: var(--ink); }
+  .melt .x { font: 600 11px "Apple SD Gothic Neo", system-ui, sans-serif; fill: var(--ink-soft); }
+  .melt .loss { font: 700 11px "Apple SD Gothic Neo", system-ui, sans-serif; fill: var(--up); }
+
+  /* 실질수익률 표 */
+  .rate {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .rate .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.25fr;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px;
+  }
+  .rate .row:first-child { border-top: none; }
+  .rate .row.h {
+    background: var(--paper);
+    font-size: 11.5px; font-weight: 700;
+    letter-spacing: .04em; color: var(--ink-soft);
+  }
+  .rate .row b { font-weight: 800; }
+  .rate .row .real { font-weight: 800; }
+  .rate .neg .real { color: var(--up); }
+  .rate .zero .real { color: var(--ink-soft); }
+  .rate .pos .real { color: var(--grow); }
+  .rate .row .note { color: var(--ink-soft); font-size: 12.5px; }
+  .rate .row.mark { background: var(--grow-soft); }
+  .rate .row.mark .note { color: var(--ink); font-weight: 700; }
+
+  /* 성적표 계산 */
+  .calc {
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--up);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .calc h4 { margin: 0 0 8px; font-size: 14px; font-weight: 800; color: var(--up); }
+  .calc p { margin: 0; font-size: 13.5px; }
+  .calc .steps {
+    margin-top: 12px;
+    background: var(--paper);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+  .calc .steps .l { color: var(--ink-soft); }
+  .calc .steps .r { float: right; font-weight: 800; }
+  .calc .steps .hr {
+    border-top: 1px dashed var(--line);
+    margin: 6px 0;
+  }
+  .calc .steps .fin { color: var(--up); }
+  .calc .after { margin-top: 10px; font-size: 12.5px; color: var(--ink-soft); }
+  .calc .after b { color: var(--ink); }
+
+  /* 2열 숫자 표 */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .nb {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .nb.grow { border-color: var(--grow); background: var(--grow-soft); }
+  .nb.loss { border-color: var(--up);   background: var(--up-soft); }
+  .nb h4 { margin: 0 0 4px; font-size: 14.5px; font-weight: 800; }
+  .nb.grow h4 { color: var(--grow); }
+  .nb.loss h4 { color: var(--up); }
+  .nb .cap { font-size: 11.5px; color: var(--ink-soft); }
+  .nb ul { margin: 10px 0 0; padding: 0; list-style: none; }
+  .nb li {
+    display: flex; justify-content: space-between; gap: 10px;
+    font-size: 13px; padding: 6px 0;
+    border-top: 1px dashed var(--line);
+  }
+  .nb li:first-child { border-top: none; }
+  .nb li span { color: var(--ink-soft); }
+  .nb li b { font-weight: 800; }
+  .nb .say { margin: 10px 0 0; font-size: 12.5px; color: var(--ink); }
+  .nb.grow .say b { color: var(--grow); }
+  .nb.loss .say b { color: var(--up); }
+
+  /* 오늘의 질문 */
+  .ask {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .ask + .ask { margin-top: 12px; }
+  .ask h4 { margin: 0 0 10px; font-size: 14.5px; font-weight: 800; color: var(--grow); }
+  .ask .opts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ask .opt {
+    font-size: 12px; font-weight: 700;
+    padding: 5px 11px; border-radius: 999px;
+    background: var(--paper); border: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .ask .opt em { font-style: normal; color: var(--ink-soft); font-weight: 600; }
+  .ask p { margin: 10px 0 0; font-size: 12.5px; color: var(--ink-soft); }
+  .ask p b { color: var(--ink); }
+
+  .warn {
+    margin-top: 12px;
+    background: var(--gold-soft);
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    color: var(--ink);
+  }
+  .warn b { color: var(--gold); }
+
+  /* Takeaway */
+  .takeaway {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 14px;
+    padding: 22px 24px;
+    text-align: center;
+  }
+  .takeaway .section-label { color: rgba(255,255,255,.55); margin-bottom: 8px; }
+  .takeaway p {
+    margin: 0;
+    font-size: clamp(16px, 3.8vw, 19px);
+    font-weight: 700;
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+  .takeaway .hl { color: var(--grow); }
+  .takeaway .hl2 { color: var(--gold); }
+
+  @media (max-width: 460px) {
+    .duo { grid-template-columns: 1fr; }
+    .rate .row { grid-template-columns: 1fr 1fr; }
+    .rate .row .note { grid-column: 1 / -1; }
+  }
+
+  @media print {
+    body { padding: 0; background: var(--card); }
+    .card { border: none; box-shadow: none; max-width: none; }
+    .body > section { break-inside: avoid; }
+  }
+
+  /* 번호 목록 */
+  .why { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .why li { display: flex; gap: 14px; padding: 14px 16px; border-top: 1px solid var(--line); }
+  .why li:first-child { border-top: none; }
+  .why .n {
+    flex: none; width: 30px; height: 30px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800; background: var(--up-soft); color: var(--up);
+  }
+  .why.fix .n { background: var(--grow-soft); color: var(--grow); }
+  .why h4 { margin: 0; font-size: 14.5px; font-weight: 800; }
+  .why p { margin: 2px 0 0; font-size: 13px; color: var(--ink-soft); }
+  .why p b { color: var(--ink); }
+
+  /* 댐 흐름 */
+  .flow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .flow .f { border-radius: 12px; padding: 14px 16px; font-size: 13px; }
+  .flow .f h4 { margin: 0 0 6px; font-size: 14.5px; font-weight: 800; }
+  .flow .open { background: var(--grow-soft); border: 1px solid var(--grow); }
+  .flow .open h4 { color: var(--grow); }
+  .flow .shut { background: var(--up-soft); border: 1px solid var(--up); }
+  .flow .shut h4 { color: var(--up); }
+  .flow .f p { margin: 0; line-height: 1.8; }
+  @media (max-width: 460px) { .flow { grid-template-columns: 1fr; } }
+
+  /* 몇 배가 됐나 막대 */
+  .bars { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .bars .b { display: grid; grid-template-columns: 92px 1fr 52px; align-items: center; gap: 10px; font-size: 13px; padding: 5px 0; }
+  .bars .b span { color: var(--ink-soft); }
+  .bars .b i { display: block; height: 14px; border-radius: 4px; background: var(--line); }
+  .bars .b.hot i { background: var(--up); }
+  .bars .b b { font-weight: 800; text-align: right; }
+  .bars .b.hot b { color: var(--up); }
+  .bars .cap { margin: 10px 0 0; padding-top: 10px; border-top: 1px dashed var(--line); font-size: 12.5px; color: var(--ink-soft); }
+  .bars .cap b { color: var(--ink); }
+  .nb.plain h4 { color: var(--ink); }
+  .calc .steps .ok { color: var(--grow); }
+
+  /* 개념 그림 · 섞은 쪽 막대 */
+  .melt .mix  { fill: var(--grow); }
+  .melt .gain { font: 800 11px "Apple SD Gothic Neo", system-ui, sans-serif; fill: var(--grow); }
+  .melt.swing { display: block; max-width: 440px; margin: 0 auto; }
+  .melt + .duo { margin-top: 12px; }
+
+  /* 되돌리기 표 */
+  .reb { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .ask + .reb, .ask + .duo { margin-top: 12px; }
+  .reb .row {
+    display: grid;
+    grid-template-columns: 1.45fr 1.05fr .8fr;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 16px;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px;
+  }
+  .reb .row:first-child { border-top: none; }
+  .reb .row.h {
+    background: var(--paper);
+    font-size: 11.5px; font-weight: 700;
+    letter-spacing: .04em; color: var(--ink-soft);
+  }
+  .reb .row > div + div { text-align: right; }
+  .reb .row b { display: block; font-weight: 800; }
+  .reb .row span { display: block; font-size: 12px; color: var(--ink-soft); }
+  .reb .row.mark { background: var(--grow-soft); }
+  .reb .dn { color: var(--up); }
+  .reb .ok { color: var(--grow); }
+  @media (max-width: 460px) {
+    .reb .row { grid-template-columns: 1fr 1fr; row-gap: 6px; }
+    .reb .row > div:first-child { grid-column: 1 / -1; }
+    .reb .row > div + div { text-align: left; }
+    .reb .row.h > div:first-child { display: none; }
+  }
+
+  .ask h4.bad { color: var(--up); }
+  .nw { white-space: nowrap; }
+  .warn .fine { display: block; margin-top: 4px; font-size: 11.5px; color: var(--ink-soft); }
+</style>
+<div class="card">
+  <header class="head">
+    <p class="eyebrow">주식 유치원 · 9회차</p>
+    <h1>가장 기본적인<br>투자 방법</h1>
+    <p class="goal">🎯 <b>수업 목표</b> — 돈을 버는 것보다 <b>잃지 않는 것</b>이 먼저인 이유를 알고, <b>반대로 움직이는 자산을 섞어</b> 손실을 막는 원리(자산배분)와 틀어진 <b>비중을 되돌리는 법</b>(리밸런싱)을 내 말로 설명한다.</p>
+  </header>
+
+  <div class="body">
+
+    <!-- 1. 출발점 -->
+    <section>
+      <p class="section-label">출발점 · 4회차가 남긴 질문</p>
+      <div class="lead">
+        <p class="big">버는 건 노력하면 된다.<br>그런데 <b>잃지 않는 건</b> 어떻게 하지?</p>
+        <p>4회차에서 반토막이 나면 두 배를 벌어야 제자리라고 배웠다. 하지만 종목을 잘 골라서 매년 플러스를 내는 건 불가능하다. 주가는 예측할 수 없게 움직인다. 금융이 찾은 답은 종목이 아니라 <b>섞는 것</b>, 곧 <b>포트폴리오</b>다.</p>
+        <p class="src">📺 <b>머니코믹스 「가장 기본적인 투자방법」</b>(2024년 1월 공개)을 정리한 카드다. 영상 속 숫자는 당시 기준.</p>
+      </div>
+    </section>
+
+    <!-- 2. 물통 게임 -->
+    <section>
+      <p class="section-label">구멍 난 물통 게임 · 금융회사 신입사원 연수</p>
+      <div class="ask">
+        <h4>🪣 5분 동안 통에 물을 가장 높이 채운 팀이 이긴다</h4>
+        <p>옆에 강이 있고, 바가지로 물을 퍼 나른다. 그런데 통 옆구리에 <b>구멍</b>이 뚫려 있다. 한 팀은 다섯 명이다.</p>
+      </div>
+      <div class="duo">
+        <div class="nb loss">
+          <h4>다섯 명이 전부 물을 붓는 팀</h4>
+          <div class="cap">구멍은 그대로 둔다</div>
+          <p class="say">열심히 퍼 나르지만 부은 만큼 샌다. <b>아무리 부어도 안 찬다.</b></p>
+        </div>
+        <div class="nb grow">
+          <h4>구멍부터 막는 팀</h4>
+          <div class="cap">다섯 중 셋이 구멍을 막는다</div>
+          <p class="say">물은 둘이서만 붓는다. 그런데 <b>항상 1등</b>을 한다.</p>
+        </div>
+      </div>
+      <p class="warn">💧 <b>물은 수익, 구멍은 손실</b>이다. 붓는 것도 중요하지만 <b>구멍을 막는 게 먼저</b>다. 자산가들은 이 말을 바로 알아듣는다. 돈이 적을 때는 높은 수익률만 보느라 위험을 잘 따지지 않는다.</p>
+    </section>
+
+    <!-- 3. 반대로 가는 자산 -->
+    <section>
+      <p class="section-label">구멍을 막는 법 · 반대로 가는 자산을 같이 든다</p>
+      <div class="flow">
+        <div class="f shut">
+          <h4>📉 주식만 들고 있으면</h4>
+          <p>오를 땐 즐기면 된다<br>내릴 땐? 빨리 손절?<br>→ 잘 안 된다<br>→ <b>국민연금도 못 한다</b></p>
+        </div>
+        <div class="f open">
+          <h4>🛡️ 반대쪽 자산을 같이 들면</h4>
+          <p>주식이 내릴 때<br>상대적으로 오르는 자산<br>= 헤지 자산 · 안전자산<br>→ 예: <b>달러, 채권</b></p>
+        </div>
+      </div>
+      <p class="warn">📏 <b>내일 주가는 못 맞힌다. 하지만 관계는 계산할 수 있다.</b> 주식이 크게 빠질 때 무엇이 올랐는지는 기록에 남아 있다. 외환위기 때 달러는 2,000원 근처까지, 2008년 금융위기 때는 1,500원대 후반까지 올랐다. <span class="nw">(8회차:</span> 위기가 오면 원화는 떨어진다)</p>
+      <p class="warn">🧩 어떤 자산을 몇 대 몇으로 섞을지 정하는 것이 <b class="nw">자산배분</b>이다. 주식 종목을 여러 개 사라는 말이 아니다. <b>내 전체 재산</b>을 놓고 나누는 것이다. 이렇게 섞으면 전체의 흔들림이 줄어든다는 건 수학으로 증명돼 있다(포트폴리오 이론).</p>
+    </section>
+
+    <!-- 4. 덜 벌고 덜 잃는다 -->
+    <section>
+      <p class="section-label">자산배분의 성격 · 더 버는 기술이 아니다 (개념 그림)</p>
+      <svg class="melt swing" viewBox="0 0 360 166" role="img"
+           aria-label="해마다의 수익률 개념 그림. 주식만 들면 오른 해에 크게 벌고 내린 해에 크게 잃는다. 반대로 가는 자산을 섞으면 오른 해에 덜 벌고 내린 해에 덜 잃는다.">
+        <!-- 범례 -->
+        <rect class="bar" x="24" y="4" width="10" height="10" rx="2"/>
+        <text class="x" x="39" y="13">주식만</text>
+        <rect class="mix" x="92" y="4" width="10" height="10" rx="2"/>
+        <text class="x" x="107" y="13">주식 + 반대로 가는 자산</text>
+
+        <!-- 주식만 -->
+        <rect class="bar" x="34"  y="48" width="20" height="48" rx="3"/>
+        <rect class="bar" x="87"  y="96" width="20" height="44" rx="3"/>
+        <rect class="bar" x="140" y="66" width="20" height="30" rx="3"/>
+        <rect class="bar" x="193" y="96" width="20" height="34" rx="3"/>
+        <rect class="bar" x="246" y="76" width="20" height="20" rx="3"/>
+        <rect class="bar" x="299" y="50" width="20" height="46" rx="3"/>
+
+        <!-- 섞은 포트폴리오 -->
+        <rect class="mix" x="56"  y="74" width="20" height="22" rx="3"/>
+        <rect class="mix" x="109" y="96" width="20" height="17" rx="3"/>
+        <rect class="mix" x="162" y="82" width="20" height="14" rx="3"/>
+        <rect class="mix" x="215" y="96" width="20" height="13" rx="3"/>
+        <rect class="mix" x="268" y="86" width="20" height="10" rx="3"/>
+        <rect class="mix" x="321" y="75" width="20" height="21" rx="3"/>
+
+        <line class="base" x1="24" y1="96" x2="352" y2="96"/>
+        <text class="x" x="20" y="100" text-anchor="end">0</text>
+
+        <text class="x"    x="80"  y="88">덜 번다</text>
+        <text class="gain" x="133" y="110">덜 잃는다</text>
+
+        <text class="x" x="55"  y="158" text-anchor="middle">1년 차</text>
+        <text class="x" x="108" y="158" text-anchor="middle">2년 차</text>
+        <text class="x" x="161" y="158" text-anchor="middle">3년 차</text>
+        <text class="x" x="214" y="158" text-anchor="middle">4년 차</text>
+        <text class="x" x="267" y="158" text-anchor="middle">5년 차</text>
+        <text class="x" x="320" y="158" text-anchor="middle">6년 차</text>
+      </svg>
+      <div class="duo">
+        <div class="nb plain">
+          <h4>주식이 오를 때 — 짐이다</h4>
+          <p class="say">“너 때문에 남들보다 덜 벌었잖아.” 달러에 넣어 둔 30이 아깝게 느껴진다.</p>
+        </div>
+        <div class="nb grow">
+          <h4>주식이 박살 날 때 — 방패다</h4>
+          <p class="say">남들이 손실을 볼 때 손실을 메워 준다. 그리고 <b>싸진 주식을 다시 살 돈</b>이 된다.</p>
+        </div>
+      </div>
+      <p class="warn">🏛️ 국민연금, 미국 캘리포니아 연금 같은 <b>전 세계 기금이 전부 이 방식</b>으로 굴린다. 운용하는 사람이 천재라서가 아니다. 꼭대기를 높이려는 건 도박이고, 금융 이론은 <b>바닥을 막는다.</b> 그 값으로 위쪽을 조금 포기한다. 욕심을 조금 버리는 것이다.</p>
+      <p class="warn">⚠️ <b>손실이 0이 되는 건 아니다.</b> 금리가 급히 오른 2022년처럼 주식과 채권이 같이 빠지는 해도 있다. 구멍을 없애는 게 아니라 <b>깊은 구멍을 얕게</b> 만드는 것이다.</p>
+    </section>
+
+    <!-- 5. 7:3 사례 -->
+    <section>
+      <p class="section-label">영상 속 사례 · 주식 70 : 달러 30으로 1,000만 원</p>
+      <div class="ask">
+        <h4>“코스피 3,000인데, 지금 사도 돼요?”</h4>
+        <p>2021년, 코스피가 처음 3,000을 넘었을 때 나온 질문이다. 답은 이랬다. 사도 된다. 4,000에 갈지 아무도 모른다. 다만 <b>반대로 가는 달러를 같이</b> 산다.</p>
+      </div>
+      <div class="reb">
+        <div class="row h"><div>무슨 일이 생겼나</div><div>주식 70 : 달러 30</div><div>주식만 100</div></div>
+        <div class="row">
+          <div><b>① 시작</b><span>2021년 · 코스피 3,000 · 달러 1,100원대</span></div>
+          <div><b>1,000만</b><span>700 + 300</span></div>
+          <div><b>1,000만</b></div>
+        </div>
+        <div class="row">
+          <div><b>② 주식 −17% · 달러 +20%</b><span>3년 뒤 · 코스피 2,500 · 달러 1,330원</span></div>
+          <div><b class="dn">941만</b><span>581 + 360</span></div>
+          <div><b class="dn">830만</b></div>
+        </div>
+        <div class="row mark">
+          <div><b>③ 다시 7&nbsp;:&nbsp;3으로</b><span>불어난 달러 78만 원어치를 팔아 싸진 주식을 산다</span></div>
+          <div><b>941만</b><span>659 + 282</span></div>
+          <div><span>살 돈이 없다</span></div>
+        </div>
+        <div class="row">
+          <div><b>④ 주식도 달러도 제자리로</b><span>가정 · 코스피 3,000 · 달러 1,100원대</span></div>
+          <div><b class="ok">1,029만</b><span>794 + 235</span></div>
+          <div><b>1,000만</b></div>
+        </div>
+      </div>
+      <p class="warn">🔁 ②에서 주식만 든 사람은 −17%, 섞은 사람은 −6%다. 이때 비중은 저절로 <b>6&nbsp;:&nbsp;4</b>가 되는데, 처음 정한 7&nbsp;:&nbsp;3으로 되돌리는 ③이 <b class="nw">리밸런싱</b>이다. 비싸진 것을 팔아 싸진 것을 사는 일이다. 그 결과 주가도 환율도 제자리로 돌아왔을 뿐인데 내 돈은 <b>29만 원</b> 늘었다. ③을 건너뛰었다면 1,000만 원 그대로다. 시장은 오르내림을 반복하니, 이걸 되풀이하면 <b>방향을 못 맞혀도 번다.</b><span class="fine">영상 속 숫자로 계산한 예시 · 세금과 수수료 제외</span></p>
+      <p class="warn">📅 매일 볼 필요 없다. <b>뉴스에 “주식 많이 빠졌다”가 나올 때</b> 열어 보면 된다. 개인은 자산 <b>두세 개</b>만 섞어 비중을 맞춰도 크게 잃지 않는다.</p>
+    </section>
+
+    <!-- 6. 싼 쪽을 본다 -->
+    <section>
+      <p class="section-label">무엇을 섞나 · 많이 내려와 있는 쪽을 본다</p>
+      <div class="duo">
+        <div class="nb plain">
+          <h4>영상 당시 금리</h4>
+          <div class="cap">2023년 말 · 15년 만에 돌아온 숫자</div>
+          <ul>
+            <li><span>미국 국채</span><b>약 5%</b></li>
+            <li><span>미국 회사채</span><b>6~7%</b></li>
+            <li><span>정기예금</span><b>한때 5%</b></li>
+          </ul>
+          <p class="say">금리가 높다 = <b>채권 가격이 싸다</b> (5·6회차)</p>
+        </div>
+        <div class="nb grow">
+          <h4>5%를 깔고 주식을 섞으면</h4>
+          <div class="cap">전체 자산 기준으로 본다</div>
+          <ul>
+            <li><span>주식이 오른 해</span><b>둘 다 번다</b></li>
+            <li><span>주식이 깨진 해</span><b>5%가 메운다</b></li>
+          </ul>
+          <p class="say">마이너스로 끝나는 해가 <b>줄어든다.</b></p>
+        </div>
+      </div>
+      <p class="warn">🙅 “주식으로 10%는 벌어야죠.” → <b>욕심을 조금 버리면 된다.</b> 전체 자산이 연 5%만 불어도 30년이면 4.3배, 8%면 10.1배다(4회차). 일본의 잃어버린 30년(8회차)에 웃은 사람도 3~4%짜리 장기 국채를 사서 끝까지 들고 간 사람들이었다.</p>
+      <p class="warn">⚠️ <b>지금도 채권이 싸다는 뜻이 아니다.</b> 무엇이 싼지는 때마다 다르다. 원리만 가져간다. 오르내림(사이클)이 있는 자산 중 <b>많이 내려와 있는 쪽</b>에 관심을 둔다. 거기서 더 내려갈 수도 있다.</p>
+    </section>
+
+    <!-- 7. 순서 -->
+    <section>
+      <p class="section-label">순서 · 종목은 맨 마지막이다</p>
+      <ol class="why fix">
+        <li><span class="n">1</span><div><h4>내 전체 재산부터 센다</h4><p>주식·코인·예금이 각각 얼마이고 몇 %인가. <b>“작년 내 재산 수익률이 몇 %였나?”</b>에 답할 수 있어야 한다.</p></div></li>
+        <li><span class="n">2</span><div><h4>올해 목표 수익률을 정한다</h4><p><b>기준금리 + 2%</b>면 잘하는 것이다. 20대는 7~8%, 나이가 많을수록 5% 쪽으로.</p></div></li>
+        <li><span class="n">3</span><div><h4>자산별 비중을 정한다</h4><p>주식 몇, 달러·채권 몇. 이것이 내 <b>포트폴리오</b>다.</p></div></li>
+        <li><span class="n">4</span><div><h4>종목은 그다음이다</h4><p>다들 “그래서 뭐 사요?”만 묻는다. 그건 <b>①②③이 정해진 뒤</b>에 나오는 질문이다.</p></div></li>
+      </ol>
+      <p class="warn">🧮 <b>기준금리 + 2%</b> — 영상 당시(3.5%)엔 5%대, 2026년 9월 기준(3.00%)으로는 5%다. 별것 아닌 숫자 같지만 <b>전 재산이 그만큼 불어나는 건</b> 얘기가 다르다. 계좌 하나가 아니라 전체로 센다(4회차). 가만히 있으면 0%가 아니라 물가만큼 마이너스다.</p>
+    </section>
+
+    <!-- 8. 큰 구멍, 그리고 나 -->
+    <section>
+      <p class="section-label">가장 큰 구멍, 그리고 가장 좋은 투자처</p>
+      <div class="ask">
+        <h4 class="bad">🕳️ 한 번에 몇 년이 날아가는 구멍</h4>
+        <p><b>전세 사기</b> — 전 재산에 대출까지 얹은 돈이 한 번에 날아간다. 다시 시작할 수는 있지만 시간이 몇 년 뒤로 간다.<br><b>한곳에 몰아넣기</b> — 2007~08년 한 나라에 몰아 담은 해외 펀드들은 금융위기 때 −86%, −92%까지 갔다(영상 속 사례). −90%면 열 배를 벌어야 본전이다.</p>
+      </div>
+      <div class="ask">
+        <h4>💪 투자 대상 1호는 나</h4>
+        <p>월급(굴릴 눈덩이의 크기)을 키우는 게 가장 좋은 투자다. 다만 성장이 느린 시대엔 <b>월급만으로는 격차를 따라잡기 어렵다.</b> 그래서 일찍 올라타서 같이 굴린다. 미국은 퇴직연금이 자동으로 주식시장에 들어가, 시장이 오르면 국민도 같이 부자가 된다. 나는 그 <b>줄을 잡고 있는가.</b></p>
+      </div>
+    </section>
+
+    <!-- 9. 오늘 할 일 -->
+    <section>
+      <p class="section-label">오늘 집에 가서 할 일</p>
+      <div class="ask">
+        <h4>✅ 내 재산 지도부터 그린다</h4>
+        <div class="opts">
+          <span class="opt">주식 <em>얼마, 몇 %</em></span>
+          <span class="opt">코인 <em>얼마, 몇 %</em></span>
+          <span class="opt">예금·현금 <em>얼마, 몇 %</em></span>
+          <span class="opt">달러·채권 <em>있는가</em></span>
+        </div>
+        <p>이걸 모르는 채로 종목만 고를 때가 아니다. 적어 놓고 세 가지에 답한다.<br><b>① 작년 내 전체 재산 수익률은 몇 %였나<br>② 올해 목표 수익률은 몇 %인가<br>③ 주식이 반토막 나면 전체 재산은 몇 %가 깨지나</b></p>
+      </div>
+    </section>
+
+    <section class="takeaway">
+      <p class="section-label">한 문장 정리</p>
+      <p>버는 것보다 먼저, <span class="hl2">잃지 않는 것</span>.<br>반대로 가는 자산을 <span class="hl">섞고</span>, 틀어진 비중은 <span class="hl">되돌린다</span>.<br>종목은 <span class="hl2">전체 재산과 목표</span>를 정한 다음이다.</p>
+    </section>
+
+  </div>
+</div>
